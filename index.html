@@ -3,121 +3,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technical Writer Portfolio</title>
+    <title>Portfolio - Technical Writer & AI Documentation Specialist</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-blue: #0000FF;
-            --text-primary: #1A1A1A;
+            --warm-bg: #FFF9F0;
+            --orange-accent: #FF6B00;
         }
-        .gradient-text {
-            background: linear-gradient(90deg, #0000FF, #4B0082);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        body {
+            background-color: var(--warm-bg);
+            scroll-behavior: smooth;
+        }
+        .gradient-footer {
+            background: linear-gradient(to bottom, 
+                #FFD700,
+                #FFA500,
+                #FF6347,
+                #DC143C
+            );
+            height: 8px;
+        }
+        .card {
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+        }
+        .section-content {
+            display: none;
+        }
+        .section-content.active {
+            display: block;
         }
     </style>
 </head>
-<body class="bg-white text-gray-900">
-    <nav class="border-b border-gray-200 fixed w-full bg-white z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <span class="text-2xl font-bold gradient-text">Portfolio</span>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <a href="#about" class="text-gray-700 hover:text-blue-600">About</a>
-                    <a href="#experience" class="text-gray-700 hover:text-blue-600">Experience</a>
-                    <a href="#skills" class="text-gray-700 hover:text-blue-600">Skills</a>
-                </div>
-            </div>
+<body>
+    <!-- Navigation -->
+    <nav class="py-4 px-6 flex justify-between items-center sticky top-0 bg-white z-50 shadow-sm">
+        <div class="text-2xl font-bold">NB.</div>
+        <div class="space-x-6">
+            <a href="#all-roles" class="hover:text-orange-500">All Roles</a>
+            <a href="#experience" class="hover:text-orange-500">Experience</a>
+            <a href="#projects" class="hover:text-orange-500">Projects</a>
+            <a href="#skills" class="hover:text-orange-500">Skills</a>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
-        <!-- Hero Section -->
-        <section class="py-20">
-            <h1 class="text-5xl font-bold gradient-text mb-6">Technical Writer & AI Documentation Specialist</h1>
-            <p class="text-xl text-gray-600 max-w-3xl">
-                Bridging the gap between complex AI technologies and human understanding through clear, precise, and engaging documentation.
-            </p>
-        </section>
+    <!-- Hero Section -->
+    <header class="max-w-4xl mx-auto px-6 py-20 text-center">
+        <h1 class="text-4xl font-bold mb-6">Latest updates from<br>Technical Documentation Journey.</h1>
+        <div class="bg-white p-6 rounded-lg shadow-sm mb-8">
+            <h2 class="text-2xl font-bold mb-4">Transitioning to AI Documentation</h2>
+            <p class="text-gray-600 mb-4">From Instructional Design to AI Technical Writing: A journey of continuous learning and expertise building.</p>
+            <a href="#experience" class="bg-black text-white px-6 py-2 rounded-full inline-block">Learn more</a>
+        </div>
+    </header>
 
-        <!-- About Section -->
-        <section id="about" class="py-16 border-t border-gray-200">
-            <h2 class="text-3xl font-bold mb-8">About Me</h2>
-            <div class="prose max-w-none">
-                <p class="text-lg mb-6">
-                    Currently transitioning from a 7-year career in instructional design to the exciting world of AI and data science. My unique background combines deep expertise in educational content creation with hands-on experience in data science and API documentation.
-                </p>
-                <p class="text-lg mb-6">
-                    Recently completed a Master's in Data Science and AI, including a 6-month data science internship where I worked extensively with API documentation, code documentation, and client presentations.
-                </p>
-                <div class="bg-blue-50 p-6 rounded-lg mt-8">
-                    <h3 class="text-xl font-semibold mb-4">Why Mistral AI?</h3>
-                    <p class="text-lg">
-                        This role represents the perfect intersection of my skills: combining my expertise in instructional design with my passion for AI technology. It offers an opportunity to contribute to cutting-edge AI documentation while continuing to learn from industry experts.
-                    </p>
+    <!-- All Roles Section -->
+    <section id="all-roles" class="max-w-4xl mx-auto px-6 py-16">
+        <h2 class="text-3xl font-bold mb-8">All Roles</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <h3 class="text-xl font-bold mb-4">Technical Writer</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>7+ years of experience in technical documentation</li>
+                    <li>Specialized in API and SDK documentation</li>
+                    <li>Experience with developer documentation</li>
+                    <li>Strong focus on user-centered documentation</li>
+                </ul>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <h3 class="text-xl font-bold mb-4">Instructional Designer</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Created comprehensive learning materials</li>
+                    <li>Developed technical training programs</li>
+                    <li>Experience with e-learning platforms</li>
+                    <li>Focus on adult learning principles</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="max-w-4xl mx-auto px-6 py-16 bg-white">
+        <h2 class="text-3xl font-bold mb-8">Experience</h2>
+        <div class="space-y-8">
+            <div class="border-l-4 border-orange-500 pl-4">
+                <h3 class="text-xl font-bold">Data Science Intern</h3>
+                <p class="text-gray-600">6 months | Recent</p>
+                <ul class="mt-4 space-y-2">
+                    <li>• Documented ML models and data pipelines</li>
+                    <li>• Created API documentation for internal tools</li>
+                    <li>• Developed technical specifications</li>
+                </ul>
+            </div>
+            <div class="border-l-4 border-orange-500 pl-4">
+                <h3 class="text-xl font-bold">Senior Instructional Designer</h3>
+                <p class="text-gray-600">7 years</p>
+                <ul class="mt-4 space-y-2">
+                    <li>• Led documentation projects for technical products</li>
+                    <li>• Created user guides and training materials</li>
+                    <li>• Managed content development teams</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="max-w-4xl mx-auto px-6 py-16">
+        <h2 class="text-3xl font-bold mb-8">Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <h3 class="text-xl font-bold mb-4">API Documentation Portal</h3>
+                <p class="text-gray-600 mb-4">Developed comprehensive API documentation using OpenAPI/Swagger</p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Interactive API reference</li>
+                    <li>Code samples in multiple languages</li>
+                    <li>Integration guides</li>
+                </ul>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <h3 class="text-xl font-bold mb-4">ML Model Documentation</h3>
+                <p class="text-gray-600 mb-4">Created documentation for machine learning models</p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Model architecture documentation</li>
+                    <li>Training pipeline guides</li>
+                    <li>Model deployment documentation</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="max-w-4xl mx-auto px-6 py-16 bg-white">
+        <h2 class="text-3xl font-bold mb-8">Skills</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 class="text-xl font-bold mb-4">Documentation</h3>
+                <ul class="space-y-2">
+                    <li>• API Documentation</li>
+                    <li>• Markdown/RST</li>
+                    <li>• Technical Writing</li>
+                    <li>• Style Guides</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4">Technical</h3>
+                <ul class="space-y-2">
+                    <li>• Python</li>
+                    <li>• Git/GitHub</li>
+                    <li>• REST APIs</li>
+                    <li>• Machine Learning</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4">Tools</h3>
+                <ul class="space-y-2">
+                    <li>• Swagger/OpenAPI</li>
+                    <li>• Jupyter Notebooks</li>
+                    <li>• VS Code</li>
+                    <li>• Documentation Platforms</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <div class="max-w-4xl mx-auto px-6 text-center py-20">
+        <h2 class="text-3xl font-bold mb-8">Ready to collaborate on AI documentation?</h2>
+        <div class="flex justify-center space-x-6">
+            <a href="mailto:your.email@example.com" class="hover:text-orange-500">Contact me →</a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" class="hover:text-orange-500">LinkedIn →</a>
+            <a href="https://github.com/yourusername" target="_blank" class="hover:text-orange-500">GitHub →</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="gradient-footer"></div>
+        <div class="bg-black text-white py-12">
+            <div class="max-w-4xl mx-auto px-6 grid grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-bold mb-4">About</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#all-roles" class="hover:text-orange-500">Roles</a></li>
+                        <li><a href="#experience" class="hover:text-orange-500">Career</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-4">Work</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#projects" class="hover:text-orange-500">Projects</a></li>
+                        <li><a href="#skills" class="hover:text-orange-500">Skills</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-4">Connect</h3>
+                    <ul class="space-y-2">
+                        <li><a href="mailto:your.email@example.com" class="hover:text-orange-500">Email</a></li>
+                        <li><a href="https://linkedin.com/in/yourprofile" class="hover:text-orange-500">LinkedIn</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-4">More</h3>
+                    <ul class="space-y-2">
+                        <li><a href="https://github.com/yourusername" class="hover:text-orange-500">GitHub</a></li>
+                        <li><a href="#" class="hover:text-orange-500">Resume</a></li>
+                    </ul>
                 </div>
             </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience" class="py-16 border-t border-gray-200">
-            <h2 class="text-3xl font-bold mb-8">Experience</h2>
-            <div class="grid gap-8">
-                <div class="bg-white p-6 rounded-lg border border-gray-200">
-                    <h3 class="text-xl font-semibold mb-2">Data Science Intern</h3>
-                    <p class="text-gray-600 mb-4">6 months</p>
-                    <ul class="list-disc pl-6 space-y-2">
-                        <li>Created comprehensive API documentation for machine learning models</li>
-                        <li>Developed technical documentation for data pipelines and model implementations</li>
-                        <li>Prepared and delivered client presentations on complex AI solutions</li>
-                    </ul>
-                </div>
-                <div class="bg-white p-6 rounded-lg border border-gray-200">
-                    <h3 class="text-xl font-semibold mb-2">Instructional Designer</h3>
-                    <p class="text-gray-600 mb-4">7 years</p>
-                    <ul class="list-disc pl-6 space-y-2">
-                        <li>Designed and developed technical training materials for complex systems</li>
-                        <li>Created user-friendly documentation for various technical platforms</li>
-                        <li>Led cross-functional teams in content development projects</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="py-16 border-t border-gray-200">
-            <h2 class="text-3xl font-bold mb-8">Technical Skills</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white p-6 rounded-lg border border-gray-200">
-                    <h3 class="text-xl font-semibold mb-4">Documentation</h3>
-                    <ul class="list-disc pl-6 space-y-2">
-                        <li>API Documentation (OpenAPI/Swagger)</li>
-                        <li>Technical Writing</li>
-                        <li>Markdown & RST</li>
-                        <li>Git & Version Control</li>
-                    </ul>
-                </div>
-                <div class="bg-white p-6 rounded-lg border border-gray-200">
-                    <h3 class="text-xl font-semibold mb-4">Technical</h3>
-                    <ul class="list-disc pl-6 space-y-2">
-                        <li>Python & Data Science Libraries</li>
-                        <li>Machine Learning Concepts</li>
-                        <li>REST APIs</li>
-                        <li>SQL & Database Design</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-gray-50 border-t border-gray-200 mt-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <p class="text-center text-gray-600">
-                Looking forward to contributing to Mistral AI's documentation and growth.
-            </p>
         </div>
     </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
