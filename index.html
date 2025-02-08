@@ -51,8 +51,8 @@
     <nav class="py-4 px-6 flex justify-between items-center sticky top-0 z-50 shadow-sm" style="background-color: var(--warm-bg)">
         <div class="flex flex-col items-center">
             <div class="flex flex-col items-end">
-                <img src="/images/pixel-cat.gif" alt="Pixel Cat" class="h-10 w-auto object-contain">
-                <img src="/images/MistalStyle_NB.png" alt="Logo" class="h-10 w-auto object-contain">
+                <img src="/images/pixel-cat.gif" alt="Pixel Cat" class="h-8 w-auto object-contain"> <!-- Changed h-10 to h-8 -->
+                <img src="/images/MistalStyle_NB.png" alt="Logo" class="h-8 w-auto object-contain"> <!-- Changed h-10 to h-8 -->
             </div>
         </div>
         <div class="space-x-6">
@@ -64,16 +64,18 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="w-full px-6 py-20 text-center relative bg-cover bg-center bg-no-repeat min-h-[600px] flex items-center justify-center" style="background-image: url('/images/landing-page.jpg')">
+    <header class="w-full px-6 py-36 text-center relative bg-cover bg-center bg-no-repeat min-h-[800px] flex items-center justify-center" style="background-image: url('images/landing-page.png')">
         <!-- Dark overlay -->
-        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+       
         
         <!-- Content -->
-        <div class="relative z-10 max-w-4xl mx-auto">
-            <h1 class="text-5xl font-bold mb-6 text-white">Frontier AI Documentation. In My Hands.</h1>
-            <h2 class="text-2xl font-bold mb-4 text-white">Understandable AI Documentation for all builders and non-builders.</h2>
-            <p class="text-gray-200 mb-8 text-lg">From Instructional Design to AI Technical Writing: A journey of continuous learning and expertise building.</p>
-            <a href="#missions" class="bg-black text-white px-8 py-3 rounded-full inline-block hover:bg-gray-800 transition-colors border-2 border-white">Learn more</a>
+        <div class="relative z-10 max-w-7xl mx-auto flex flex-col space-y-8">
+            <h1 class="text-6xl font-semibold text-white leading-relaxed">Frontier AI Documentation. In My Hands.</h1>
+            <h2 class="text-2xl font-semibold text-white">Understandable AI Documentation for all builders and non-builders.</h2>
+            <p class="text-gray-200 font-semibold text-lg leading-relaxed">My Application for Technical Writer role at Mistral AI: Namrata Bhatia | Technical Writer x Data Scientist.</p>
+            <a href="#missions" class="inline-block text-white hover:text-gray-200 transition-colors">
+                <span class="border-b-2 border-transparent hover:border-white pb-1">Learn more</span>
+            </a>
         </div>
     </header>
 
@@ -81,7 +83,7 @@
         <!-- Background Grid -->
         <div class="bg-grid-size-md bg-grid-secondary bg-grid-pattern absolute inset-0 top-[-10%] size-full md:top-[-12%]"></div>
         <div class="max-w-7xl mx-auto relative z-10">
-            <h2 class="text-3xl font-bold text-center mb-12">How This Portfolio Aligns with Mistral AI's Role</h2>
+            <h2 class="text-3xl font-bold text-center mb-12">How my Profile Aligns with Mistral AI's Role</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
                 <!-- Mission 1 -->
                 <div class="card bg-white p-6 rounded-lg shadow-sm">
