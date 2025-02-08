@@ -37,7 +37,7 @@
         }
         footer {
         width: 100%;
-        overflow: hidden;
+        overflow: visible;
         }
         footer > div {
             width: 100%;
@@ -169,7 +169,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div class="bg-white p-6 rounded-lg shadow-sm">
                 <h3 class="text-xl font-bold mb-4">MSc Data Science and AI</h3>
-                <p class="text-gray-600 mb-4">Emlyon Business School, Paris x McGill University, Montreal</p>
+                <p class="text-gray-600 mb-4">Emlyon Business School, Paris <br>McGill University, Montreal</p>
                 <ul class="list-disc pl-6 space-y-2">
                     <li>Interactive API reference</li>
                     <li>Code samples in multiple languages</li>
@@ -177,8 +177,8 @@
                 </ul>
             </div>
             <div class="bg-white p-6 rounded-lg shadow-sm">
-                <h3 class="text-xl font-bold mb-4">ML Model Documentation</h3>
-                <p class="text-gray-600 mb-4">Created documentation for machine learning models</p>
+                <h3 class="text-xl font-bold mb-4">BSc Physics</h3>
+                <p class="text-gray-600 mb-4">University of Delhi</p>
                 <ul class="list-disc pl-6 space-y-2">
                     <li>Model architecture documentation</li>
                     <li>Training pipeline guides</li>
@@ -232,20 +232,20 @@
         </div>
     </div>
 
-    <footer class="relative mt-5 w-full">
-        <!-- Color Bands -->
-        <div class="w-full block"> <!-- Changed from flex-col to block -->
-            <div class="h-[50px] w-full block bg-[#fff0c2]"></div>
-            <div class="h-[50px] w-full block bg-[#ffd900]"></div>
-            <div class="h-[50px] w-full block bg-[#ffae00]"></div>
-            <div class="h-[50px] w-full block bg-[#ff8205]"></div>
-            <div class="h-[50px] w-full block bg-[#fa520f]"></div>
-            <div class="h-[50px] w-full block bg-[#e00400]"></div>
-        </div>    
+    <footer class="relative mt-5">
+        <!-- Color Bands Container -->
+        <div class="w-full">
+            <div class="h-[50px] w-full" style="background: hsla(45, 100%, 88%, 1)"></div>
+            <div class="h-[50px] w-full" style="background: hsla(51, 100%, 50%, 1)"></div>
+            <div class="h-[50px] w-full" style="background: hsla(41, 100%, 50%, 1)"></div>
+            <div class="h-[50px] w-full" style="background: hsla(30, 100%, 51%, 1)"></div>
+            <div class="h-[50px] w-full" style="background: hsla(17, 96%, 52%, 1)"></div>
+            <div class="h-[50px] w-full" style="background: hsla(1, 100%, 44%, 1)"></div>
+        </div>   
     
         <!-- Black Footer Content -->
-        <div class="bg-black text-white">
-            <div class="container mx-auto space-y-[107px] p-5 py-16 xl:px-12">
+        <div class="bg-black text-white py-16">
+            <div class="container mx-auto px-6">
                 <div class="mx-auto flex flex-col justify-between gap-8 lg:flex-row">
                     <!-- Your existing footer links with updated styling -->
                     <div class="max-w-4xl mx-auto px-6 grid grid-cols-4 gap-8">
