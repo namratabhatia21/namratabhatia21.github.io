@@ -7,9 +7,8 @@ Grey marks the "explaining" years and orange the "building" years, everywhere on
 
 | Page | What's on it |
 |---|---|
-| `index.html` | The story, the career line and selected work |
-| `work.html` | All projects, client work and research |
-| `platform.html` | Case study: an interactive architecture that builds itself as you scroll, with a decision record per component |
+| `index.html` | The story with portrait, the career line, leadership and projects (incoming) |
+| `work.html` | Projects (incoming) |
 | `experience.html` | Two chapters: Building (2023 – now) and Explaining (2016 – 2023), plus certifications |
 | `about.html` | Longer story, how I work, toolkit |
 
