@@ -2,22 +2,23 @@
 
 My personal site: **https://namratabhatia21.github.io**
 
-The centrepiece is one of the AI systems I designed, drawn as a blueprint that builds
-itself while you scroll. A camera follows each component as it's added: ingestion,
-queue, autoscaled workers, a BERT classifier, parallel LLM rule agents, engineer review,
-and tracing and evaluation underneath. Each component comes with its architecture
-decision record (ADR). At the end the view zooms out, simulated traffic flows through
-the system, the workers autoscale and telemetry drops into the tracing layer.
+The story in one line: seven years explaining complex systems to people, now building them with AI.
+Grey marks the "explaining" years and orange the "building" years, everywhere on the site.
 
-- One `index.html` file with inline SVG and vanilla JS. No build step, no dependencies apart from Google Fonts.
-- Dark blueprint theme, or an engineering-paper theme in light mode. Works on phones and respects `prefers-reduced-motion`.
-- `technical-writer.html` is my earlier application page (it uses `images/` and `assets/`).
+| Page | What's on it |
+|---|---|
+| `index.html` | The story, the career line and selected work |
+| `work.html` | All projects, client work and research |
+| `platform.html` | Case study: an interactive architecture that builds itself as you scroll, with a decision record per component |
+| `experience.html` | Two chapters: Building (2023 – now) and Explaining (2016 – 2023), plus certifications |
+| `about.html` | Longer story, how I work, toolkit |
+
+Plain HTML, one shared `style.css` and `site.js`. No build step. Supports light and dark mode and phones, and respects `prefers-reduced-motion`.
+`technical-writer.html` is my earlier application page.
 
 ## Editing
 
-- Links (LinkedIn, CV): `LINKS` at the top of the `<script>`. Buttons stay hidden until set.
-- Stack ticker: `STACK`.
-- Components and ADRs: `STAGES` (component, title, decision, rationale).
-- Career log and projects: plain HTML. Search for `TODO(Namrata)`.
+- CV download: set `CV_URL` in `site.js`. The buttons stay hidden until it's set.
+- Search for `TODO(Namrata)` for the things to check.
 
 Preview locally: `python3 -m http.server 8000`, then open http://localhost:8000.
