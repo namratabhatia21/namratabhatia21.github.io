@@ -1,340 +1,857 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Namrata Bhatia | Technical Writer Application </title>
-    <link rel="icon" type="image/png" href="/images/logo-icon.png">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --warm-bg: #FFF9F0;
-            --orange-accent: #FF6B00;
-        }
-        body {
-    
-            background-color: var(--warm-bg);
-            scroll-behavior: smooth;
-        }
-        .gradient-footer {
-            background: linear-gradient(to bottom, 
-                #FFD700,
-                #FFA500,
-                #FF6347,
-                #DC143C
-            );
-            height: 8px;
-        }
-        .card {
-            transition: transform 0.2s;
-        }
-        .card:hover {
-            transform: translateY(-4px);
-        }
-        .section-content {
-            display: none;
-        }
-        .section-content.active {
-            display: block;
-        }
-        footer {
-        width: 100%;
-        overflow: visible;
-        }
-        footer > div {
-            width: 100%;
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Namrata Bhatia</title>
+<meta name="description" content="AI engineer and data scientist designing production AI systems end to end: LLM pipelines, RAG, agents and MLOps.">
+<meta name="color-scheme" content="dark light">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23070c16'/%3E%3Crect x='5' y='12' width='8' height='8' rx='1.5' fill='none' stroke='%235ad1ff' stroke-width='2'/%3E%3Crect x='19' y='6' width='8' height='8' rx='1.5' fill='none' stroke='%23b18cff' stroke-width='2'/%3E%3Crect x='19' y='18' width='8' height='8' rx='1.5' fill='none' stroke='%237cf08a' stroke-width='2'/%3E%3Cpath d='M13 16h3v-6h3M16 16v6h3' stroke='%2393a7c8' stroke-width='1.5' fill='none'/%3E%3C/svg%3E">
+<style>
+/* Dark "night blueprint" by default; light "engineering paper" when the OS asks for it. */
+:root{
+  --bg:#070c16; --bg2:#0b1322; --panel:#0e1829; --ink:#dde8ff; --muted:#8798b8; --line:#1f2e48;
+  --grid:#111c30; --grid2:#17253f; --hi:#5ad1ff;
+  --c0:#5ad1ff; --c1:#3be0b0; --c2:#ff8a5b; --c3:#ffd166; --c4:#b18cff; --c5:#ff6fa5; --c6:#7cf08a;
+  --shadow:0 20px 50px rgba(0,0,0,.45);
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace; --head:"Space Grotesk",Inter,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#f3f6fb; --bg2:#e9eff8; --panel:#ffffff; --ink:#0d1a2e; --muted:#53647f; --line:#c9d5e8;
+    --grid:#e1e8f3; --grid2:#cfdbec; --hi:#0b84c6;
+    --c0:#0b84c6; --c1:#0a9c78; --c2:#d65a26; --c3:#b88600; --c4:#7650d8; --c5:#cf3772; --c6:#2c9a3c;
+    --shadow:0 20px 50px rgba(20,40,80,.14);
+  }
+}
+:root[data-theme="light"]{
+  --bg:#f3f6fb; --bg2:#e9eff8; --panel:#ffffff; --ink:#0d1a2e; --muted:#53647f; --line:#c9d5e8;
+  --grid:#e1e8f3; --grid2:#cfdbec; --hi:#0b84c6;
+  --c0:#0b84c6; --c1:#0a9c78; --c2:#d65a26; --c3:#b88600; --c4:#7650d8; --c5:#cf3772; --c6:#2c9a3c;
+  --shadow:0 20px 50px rgba(20,40,80,.14);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{font-family:var(--head);font-weight:700;line-height:1.05;margin:0;letter-spacing:-.02em}
+a{color:inherit}
+.wrap{max-width:1140px;margin:0 auto;padding:0 16px}
+.tag{font:600 .74rem var(--mono);letter-spacing:.08em;color:var(--hi)}
+.gridbg{background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),linear-gradient(var(--grid2) 1px,transparent 1px),linear-gradient(90deg,var(--grid2) 1px,transparent 1px);
+  background-size:24px 24px,24px 24px,120px 120px,120px 120px}
+
+/* nav */
+nav{position:fixed;inset:0 0 auto;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;font:500 .82rem var(--mono);
+  background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .brand{text-decoration:none;font-weight:600}
+nav .brand b{color:var(--hi)}
+nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0}
+nav ul a{text-decoration:none;color:var(--muted)} nav ul a:hover{color:var(--ink)}
+.progress{position:fixed;top:0;left:0;height:2px;z-index:45;width:100%;transform-origin:0 50%;transform:scaleX(0);
+  background:linear-gradient(90deg,var(--c0),var(--c1),var(--c2),var(--c3),var(--c4),var(--c5),var(--c6))}
+@media (max-width:680px){nav ul li:not(:last-child){display:none}}
+
+/* hud cursor */
+.hud{position:fixed;z-index:60;pointer-events:none;font:500 10px var(--mono);color:var(--hi);opacity:0;transition:opacity .2s;transform:translate(14px,14px);white-space:nowrap}
+.cross{position:fixed;z-index:59;pointer-events:none;opacity:0;transition:opacity .2s}
+.cross.x{left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--hi) 35%,transparent),transparent)}
+.cross.y{top:0;bottom:0;width:1px;background:linear-gradient(transparent,color-mix(in srgb,var(--hi) 35%,transparent),transparent)}
+
+/* ── hero ── */
+.hero{min-height:100svh;position:relative;overflow:hidden;display:flex;align-items:center}
+.hero .gridbg{position:absolute;inset:0}
+.hero .spot{position:absolute;inset:0;opacity:.9;
+  background-image:linear-gradient(color-mix(in srgb,var(--hi) 30%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--hi) 30%,transparent) 1px,transparent 1px);background-size:24px 24px;
+  -webkit-mask-image:radial-gradient(260px circle at var(--mx,70%) var(--my,40%),#000,transparent 70%);mask-image:radial-gradient(260px circle at var(--mx,70%) var(--my,40%),#000,transparent 70%)}
+.hero .fade{position:absolute;inset:auto 0 0;height:160px;background:linear-gradient(transparent,var(--bg))}
+.hero .net{position:absolute;right:1vw;bottom:30px;width:min(600px,44vw);opacity:.85}
+.hero .copy{position:relative;z-index:2;width:100%;padding-top:96px;padding-bottom:90px}
+.hero h1{font-size:clamp(2.6rem,7.4vw,6.2rem);max-width:10.5em;margin:18px 0 22px}
+.hero h1 .accent{background:linear-gradient(90deg,var(--c0),var(--c4),var(--c5));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .lead{font-size:clamp(1rem,1.5vw,1.15rem);color:var(--muted);max-width:36em;margin:0 0 26px}
+.term{font:13px/1.7 var(--mono);background:color-mix(in srgb,var(--panel) 92%,transparent);border:1px solid var(--line);border-radius:12px;max-width:560px;box-shadow:var(--shadow);overflow:hidden}
+.term .bar{display:flex;gap:6px;align-items:center;padding:9px 12px;border-bottom:1px solid var(--line);color:var(--muted);font-size:11px}
+.term .bar i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.term .bar i:nth-child(1){background:#ff5f57}.term .bar i:nth-child(2){background:#febc2e}.term .bar i:nth-child(3){background:#28c840}
+.term .bar span{margin-left:8px}
+.term pre{margin:0;padding:14px 16px;white-space:pre-wrap;min-height:9.4em;font:inherit}
+.term .p{color:var(--c6)} .term .k{color:var(--c0)} .term .d{color:var(--muted)}
+.caret{display:inline-block;width:.6em;height:1.1em;vertical-align:-.2em;background:var(--hi);animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:10px;border:1px solid var(--line);background:var(--panel);text-decoration:none;font:600 .86rem var(--mono);transition:transform .2s,border-color .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);border-color:var(--hi);box-shadow:0 0 0 3px color-mix(in srgb,var(--hi) 18%,transparent)}
+.btn.primary{background:var(--hi);color:var(--bg);border-color:var(--hi)}
+@media (max-width:820px){.hero .net{opacity:.25;width:120vw;right:-30vw}}
+
+/* stack ticker */
+.ticker{border-block:1px solid var(--line);background:var(--bg2);overflow:hidden;font:500 .9rem var(--mono);color:var(--muted)}
+.ticker .track{display:flex;gap:36px;width:max-content;padding:12px 0;will-change:transform}
+.ticker span::before{content:"▸ ";color:var(--hi)}
+
+section{position:relative}
+.head{max-width:46em;margin:0 0 44px}
+.head h2{font-size:clamp(2.1rem,5vw,3.8rem);margin:12px 0 14px}
+.head p{margin:0;color:var(--muted);font-size:1.06rem}
+.pad{padding:120px 0}
+
+/* ── system blueprint ── */
+.grow{height:950vh;position:relative}
+.stage{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--bg)}
+.scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+.scene text{font-family:var(--mono)}
+.scene .t1{font-size:15px;font-weight:600;fill:var(--ink)}
+.scene .t2{font-size:11px;fill:var(--muted)}
+.scene .t3{font-size:10px;fill:var(--muted);letter-spacing:.04em}
+.scene [data-a="draw"]{stroke-dasharray:1;stroke-dashoffset:1}
+.scene [data-a="pop"],.scene [data-a="fade"]{opacity:0}
+.scene .march{stroke-dasharray:6 6;animation:march 1s linear infinite}
+@keyframes march{to{stroke-dashoffset:-12}}
+.overlay{position:absolute;z-index:2;font:500 11px/1.6 var(--mono);color:var(--muted);pointer-events:none}
+.overlay b{color:var(--ink);font-weight:600}
+.ov-tl{left:24px;top:68px}
+.ov-bl{left:24px;bottom:20px}
+.ov-bl .bars{display:inline-flex;gap:3px;vertical-align:middle;margin-left:8px}
+.ov-bl .bars i{width:14px;height:8px;border:1px solid var(--line);display:inline-block;transition:background .3s}
+.live{display:inline-flex;align-items:center;gap:6px;color:var(--c6);opacity:0;transition:opacity .6s;margin-left:10px}
+.live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c6);box-shadow:0 0 8px var(--c6);animation:blink 1.2s steps(1) infinite}
+.live.on{opacity:1}
+.title{position:absolute;left:24px;top:110px;z-index:2;max-width:28em;transition:opacity .6s}
+.title h2{font-size:clamp(1.6rem,3.2vw,2.6rem);margin-top:8px}
+.title p{color:var(--muted);margin:10px 0 0}
+.title.hide{opacity:0}
+
+/* ADR card */
+.adr{position:absolute;right:3vw;top:50%;transform:translateY(-50%);width:min(400px,31vw);z-index:3;background:color-mix(in srgb,var(--panel) 94%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.adr .hdr{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line);font:600 11px var(--mono);color:var(--muted)}
+.adr .hdr .st{color:var(--c6);border:1px solid color-mix(in srgb,var(--c6) 50%,transparent);padding:1px 8px;border-radius:999px}
+.adr .body{padding:18px 18px 16px;border-left:3px solid var(--accent,var(--hi));transition:border-color .5s}
+.adr .comp{font:600 11px var(--mono);color:var(--accent);transition:color .5s}
+.adr h3{font-size:1.45rem;margin:6px 0 14px;line-height:1.15}
+.adr dl{margin:0;display:grid;gap:10px}
+.adr dt{font:600 10px var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.adr dd{margin:2px 0 0;font-size:.93rem}
+.adr .swap{transition:opacity .3s,transform .3s}
+.adr .swap.out{opacity:0;transform:translateX(8px)}
+.adr .steps{display:flex;gap:4px;padding:0 16px 14px}
+.adr .steps button{flex:1;height:22px;border:1px solid var(--line);background:transparent;border-radius:6px;font:600 10px var(--mono);color:var(--muted);cursor:pointer;transition:all .3s}
+.adr .steps button.on{background:color-mix(in srgb,var(--sc) 22%,transparent);border-color:var(--sc);color:var(--ink)}
+.adr .intro{position:absolute;inset:0;background:var(--panel);padding:22px;display:flex;flex-direction:column;justify-content:center;transition:opacity .5s}
+.adr .intro.gone{opacity:0;pointer-events:none}
+@media (max-width:900px),(max-aspect-ratio:7/5){
+  .adr{top:auto;bottom:12px;left:12px;right:12px;width:auto;transform:none}
+  .adr .body{padding:12px 14px}.adr h3{font-size:1.1rem;margin:4px 0 8px}.adr dd{font-size:.85rem}.adr dl{gap:6px}
+  .adr .hdr{padding:8px 14px}
+  .ov-bl{display:none}.title{top:96px;left:16px;right:16px}.ov-tl{left:16px;top:62px}
+}
+.steps-list{display:none}
+
+/* ── trade-off diffs ── */
+.diffs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.diff{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);transition:transform .3s,border-color .3s}
+.diff:hover{transform:translateY(-4px);border-color:var(--hi)}
+.diff .file{display:flex;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--line);font:600 11px var(--mono);color:var(--muted)}
+.diff pre{margin:0;padding:12px 0;font:12.5px/1.75 var(--mono);overflow-x:auto}
+.diff pre span{display:block;padding:0 14px;opacity:0;transform:translateX(-10px);transition:opacity .5s,transform .5s;transition-delay:calc(var(--l) * 160ms + .3s)}
+.diff.in pre span{opacity:1;transform:none}
+.diff .rm{color:#ff8f8f;background:rgba(255,80,80,.08)} .diff .ad{color:#7cf08a;background:rgba(80,220,120,.08)} .diff .cm{color:var(--muted)}
+:root[data-theme="light"] .diff .rm{color:#c0392b} :root[data-theme="light"] .diff .ad{color:#1e8b3a}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]) .diff .rm{color:#c0392b}:root:not([data-theme="dark"]) .diff .ad{color:#1e8b3a}}
+.diff .txt{padding:4px 16px 20px}
+.diff h3{font-size:1.15rem;margin:8px 0}
+.diff p{margin:0;color:var(--muted);font-size:.93rem}
+@media (max-width:900px){.diffs{grid-template-columns:1fr}}
+
+/* ── git log ── */
+.git{position:relative;padding-left:100px;max-width:880px}
+.git svg{position:absolute;left:0;top:0;width:96px;height:100%;overflow:visible}
+.git svg path{fill:none;stroke-width:2.5;stroke-linecap:round}
+.commit{position:relative;padding:0 0 56px;opacity:.2;transition:opacity .7s}
+.commit.in{opacity:1}
+.commit .ref{font:600 12px var(--mono);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.commit .ref .v{color:var(--cc)}
+.commit .ref .b{padding:1px 8px;border-radius:6px;border:1px solid var(--cc);color:var(--cc);font-size:11px}
+.commit h3{font-size:clamp(1.35rem,2.6vw,1.9rem);margin:6px 0}
+.commit p{margin:0;color:var(--muted);max-width:38em}
+.commit .msg{font:12px var(--mono);color:var(--muted);margin-top:8px}
+.commit .msg::before{content:"$ git commit -m ";opacity:.6}
+
+/* ── services ── */
+.services{display:grid;grid-template-columns:1.15fr 1fr;gap:20px}
+.svc{display:block;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);transition:transform .3s,border-color .3s}
+.svc:hover{transform:translateY(-5px);border-color:var(--sc)}
+.svc .top{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line);font:600 11px var(--mono);color:var(--muted)}
+.svc .run{color:var(--c6);display:inline-flex;gap:6px;align-items:center}
+.svc .run::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c6);box-shadow:0 0 8px var(--c6);animation:blink 1.6s steps(1) infinite}
+.svc svg{display:block;width:100%;height:120px;background:var(--bg2);border-bottom:1px solid var(--line)}
+.svc svg .flow{stroke-dasharray:4 8;animation:march 1s linear infinite}
+.svc .in{padding:18px 18px 20px}
+.svc h3{font-size:1.5rem;margin:0 0 8px}
+.svc p{margin:0 0 14px;color:var(--muted);font-size:.95rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font:500 11px var(--mono);padding:3px 8px;border-radius:6px;border:1px solid var(--line);color:var(--muted)}
+@media (max-width:820px){.services{grid-template-columns:1fr}}
+
+/* ── contact ── */
+footer{padding:110px 0 70px;position:relative;overflow:hidden}
+footer .gridbg{position:absolute;inset:0;opacity:.7;-webkit-mask-image:linear-gradient(transparent,#000 40%);mask-image:linear-gradient(transparent,#000 40%)}
+footer .wrap{position:relative}
+footer h2{font-size:clamp(2.1rem,5.4vw,4rem);margin:12px 0 26px}
+footer .term{max-width:680px}
+footer small{display:block;margin-top:50px;color:var(--muted);font:12px var(--mono)}
+
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0) * 110ms)}
+.reveal.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal,.commit,.diff pre span{opacity:1;transform:none}
+  .grow{height:auto}.stage{position:relative;height:auto}
+  .scene{position:relative;height:75vh}
+  .adr,.title,.overlay{display:none}
+  .steps-list{display:block;margin:0 auto;padding:30px 16px 30px 2.4em;max-width:900px}
+  .steps-list li{margin-bottom:10px}
+}
+</style>
 </head>
 <body>
-        
-    <!-- Navigation -->
-    <nav class="py-4 px-6 flex justify-between items-center sticky top-0 z-50 shadow-sm" style="background-color: var(--warm-bg)">
-        <div class="flex flex-col items-center">
-            <div class="flex flex-col items-end">
-                <img src="/images/pixel-cat.gif" alt="Pixel Cat" class="h-8 w-auto object-contain"> <!-- Changed h-10 to h-8 -->
-                <img src="/images/MistalStyle_NB.png" alt="Logo" class="h-8 w-auto object-contain"> <!-- Changed h-10 to h-8 -->
-            </div>
-        </div>
-        <div class="space-x-6">
-            <a href="#all-roles" class="hover:text-orange-500">All Roles</a>
-            <a href="#education" class="hover:text-orange-500">Education</a>
-            <a href="#skills" class="hover:text-orange-500">Skills</a>
-            <a href="#lechat" class="hover:text-orange-500">Le Chat</a>
-        </div>
-    </nav>
+<div class="progress" id="progress"></div>
+<div class="hud" id="hud"></div><div class="cross x" id="crossX"></div><div class="cross y" id="crossY"></div>
+<nav>
+  <a class="brand" href="#top">namrata<b>.</b>bhatia</a>
+  <ul>
+    <li><a href="#system">/system</a></li>
+    <li><a href="#tradeoffs">/decisions</a></li>
+    <li><a href="#path">/log</a></li>
+    <li><a href="#work">/services</a></li>
+    <li><a href="#contact">/contact</a></li>
+  </ul>
+</nav>
 
-    <!-- Hero Section -->
-    <header class="w-full px-6 py-36 text-center relative bg-cover bg-center bg-no-repeat min-h-[800px] flex items-center justify-center" style="background-image: url('images/landing-page.png')">
-        <!-- Dark overlay -->
-       
-        
-        <!-- Content -->
-        <div class="relative z-10 max-w-7xl mx-auto flex flex-col space-y-8">
-            <h1 class="text-6xl font-semibold text-white leading-relaxed">Frontier AI Documentation. In My Hands.</h1>
-            <h2 class="text-2xl font-semibold text-white">Understandable AI Documentation for all builders and non-builders.</h2>
-            <p class="text-white font-semibold text-lg leading-relaxed">My Application for Technical Writer role at Mistral AI: Namrata Bhatia | Technical Writer x Data Scientist.</p>
-            <a href="#missions" class="inline-block text-white hover:text-gray-200 transition-colors">
-                <span class="border-b-2 border-transparent hover:border-white pb-1">Learn more</span>
-            </a>
-        </div>
-    </header>
-
-    <section id = "missions" class="py-16 px-6 relative">
-        <!-- Background Grid -->
-        <div class="bg-grid-size-md bg-grid-secondary bg-grid-pattern absolute inset-0 top-[-10%] size-full md:top-[-12%]"></div>
-        <div class="max-w-7xl mx-auto relative z-10">
-            <h2 class="text-3xl font-bold text-center mb-12">How my Profile Aligns with Mistral AI's Role</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-                <!-- Mission 1 -->
-                <div class="card bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-lg font-bold mb-4">Mission #1: User Documentation for Enterprise Release</h3>
-                    <p class="text-gray-600 mb-4">I am fully available to meet tight deadlines and work around the clock for the March release.</p>
-                    <p class="text-gray-600">Collaborated with engineering and product teams across domains and geographies to ensure precise and clear documentation.</p>
-                </div>
-    
-                <!-- Mission 2 -->
-                <div class="card bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-lg font-bold mb-4">Mission #2: Analysis & Copywriting for the Platform</h3>
-                    <p class="text-gray-600 mb-4">Designed comprehensive documentation and training materials while managing teams and analyzing content workflows.</p>
-                    <p class="text-gray-600">Possess a keen eye for detail to refine and elevate technical copy.</p>
-                </div>
-    
-                <!-- Mission 3 -->
-                <div class="card bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-lg font-bold mb-4">Mission #3: Automated Support Workflows & FAQs</h3>
-                    <p class="text-gray-600 mb-4">Developed intuitive FAQ pages and self-service documentation solutions to empower end users.</p>
-                    <p class="text-gray-600">Leverage dual expertise in content creation and data science to maintain a user-centric focus.</p>
-                </div>
-    
-                <!-- Mission 4 -->
-                <div class="card bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-lg font-bold mb-4">Mission #4: API Documentation</h3>
-                    <p class="text-gray-600 mb-4">Documented technical reports for platforms like SAP, Salesforce, Oracle, and various ML pipelines.</p>
-                    <p class="text-gray-600">Skilled in Markdown and modern documentation platforms to produce clear, user-informed API guides. Quick to learn any new tech ;)</p>
-                </div>
-    
-                <!-- Mission 5 -->
-                <div class="card bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-lg font-bold mb-4">Mission #5: Adhering to Enterprise Documentation Standards</h3>
-                    <p class="text-gray-600 mb-4">Implemented and maintained style guides, version control, and accessibility best practices.</p>
-                    <p class="text-gray-600">Strong organizational skills ensure scalable and maintainable documentation across projects.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Relevant Roles Section -->
-    <section id="all-roles" class="max-w-5xl mx-auto px-6 py-16">
-        <h2 class="text-3xl font-bold text-center mb-12">Relevant Roles</h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Technical Writing & Instructional Design Card -->
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <h3 class="text-xl font-bold mb-4">Technical Writing & Instructional Design</h3>
-                <p class="text-gray-600 mb-4">7 Years of Experience</p>
-                <ul class="list-disc pl-6 space-y-2">
-                    <li><strong>Companies:</strong> Novartis, Accenture, Philips, NIIT Limited, Metlife, Govt of Alberta</li>
-                    <li>Designed end-to-end training solutions, including documentation and hands-on simulations.</li>
-                    <li>Created documentation standards and guidelines for enterprise applications.</li>
-                    <li>Led a team of 10+ in a large-scale ERP software documentation project.</li>
-                </ul>
-            </div>
-
-            <!-- Data Science Card -->
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <h3 class="text-xl font-bold mb-4">Data Scientist</h3>
-                <p class="text-gray-600 mb-4">Within Last 1 Year</p>
-                <ul class="list-disc pl-6 space-y-2">
-                    <li><strong>Companies:</strong> Alstom, Prosol, Fastned</li>
-                    <li>Developed AI/ML solutions including text classification, customer segmentation, and RAG pipelines.</li>
-                    <li>Worked with OpenAI, LangChain, and Mistral (7B, :D) models for enterprise AI applications.</li>
-                    <li>Built APIs for model deployment and created technical documentation.</li>
-                    <li>Conducted data analysis, processing, and visualization for business insights.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-
-
-    <!-- Education Section -->
-    <section id="education" class="max-w-5xl mx-auto px-6 py-16">
-        <h2 class="text-3xl font-bold text-center mb-12">Education</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <h3 class="text-xl font-bold mb-4">MSc Data Science and AI</h3>
-                <p class="text-gray-600 mb-4">Emlyon Business School, Paris <br>McGill University, Montreal</p>
-                <ul class="list-disc pl-6 space-y-2">
-                    <li>Key Courses: ML, DL, CV, NLP, LLMs, GenAI</li>
-                    <li>Relevant Tech: Python, TensorFlow, PyTorch</li>
-                    <li>Program Ambassador</li>
-                </ul>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <h3 class="text-xl font-bold mb-4">BSc Physics</h3>
-                <p class="text-gray-600 mb-4">University of Delhi</p>
-                <ul class="list-disc pl-6 space-y-2">
-                    <li>Key Courses: Quantum Physics, Mathematical Physics, Electronics</li>
-                    <li>Relevant Tech: C++, Python, SQL</li>
-                    <li>Class Representative for 3 years</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="max-w-5xl mx-auto px-6 py-16">
-        <h2 class="text-3xl font-bold text-center mb-12">Skills</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <h3 class="text-xl font-bold mb-4">Documentation</h3>
-                <ul class="space-y-2">
-                    <li>• API Documentation</li>
-                    <li>• Markdown/Latex/Redocly</li>
-                    <li>• Technical Writing</li>
-                    <li>• Style Guides</li>
-                </ul>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <h3 class="text-xl font-bold mb-4">Technical</h3>
-                <ul class="space-y-2">
-                    <li>• Python, R, Scala</li>
-                    <li>• Git/GitHub</li>
-                    <li>• AWS/ Azure ML</li>
-                    <li>• AI & Machine Learning</li>
-                </ul>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <h3 class="text-xl font-bold mb-4">Other</h3>
-                <ul class="space-y-2">
-                    <li>• Project/Stakeholder Management</li>
-                    <li>• Needs Analysis</li>
-                    <li>• Storyboarding</li>
-                    <li>• Content Management</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="lechat" class="max-w-4xl mx-auto py-16">
-        <h2 class="text-3xl font-bold text-center mb-12">
-            Let's ask your own "Le Chat"
-        </h2>
-        
-        <div class="bg-black p-8 relative min-h-[300px]">
-            <!-- Main content -->
-            <div class="max-w-2xl">
-                <h3 class="text-white space-y-4">
-                    <p>Just for fun, I gave some basic details about myself, and asked it to tell me why am I a good fit for this role.</p>
-                    
-                    <p>Once you are in the chat, you can also provide Le Chat my CV [click 
-                    <a 
-                        href="assets/Resume_NamrataBhatia_TechnicalWriter.pdf" 
-                        target="_blank" 
-                        class="text-[#FA500F] hover:text-orange-400 underline transition-colors duration-300"
-                    >
-                        here</a>
-                    to download] to ask a more relevant question about my profile. ;)</p>
-
-                    <p><i>Click the <b>orange arrow</b> icon to view the answer.</i></p>
-                </h3>
-            </div>
-    
-            <!-- Right bottom cat image -->
-            <div class="absolute bottom-4 right-4">
-                <img src="images/le-chat-graphic.jpg" alt="Le Chat Graphic" class="w-24 h-24">
-            </div>
-        </div>
-        <!-- Le Chat input image -->
-        <div class="mt-8 flex justify-center">
-            <a href="https://chat.mistral.ai/chat?q=What%20makes%20Namrata%20Bhatia%2C%20an%20Instructional%20Designer%2FTechnical%20Writer%20with%207%20years%20of%20experience%20with%20training%20programs%20and%20documentations%20for%20software%20and%20ERP%20implementation%2C%20a%20perfect%20fit%20for%20Mistral%20AI%20Technical%20Writer%20for%20API%20and%20Documentation%20role%20after%20doing%20MSc%20Data%20Science%20and%20AI%3F%20Be%20as%20detailed%20as%20possible%2C%20highlight%20her%20strengths%2C%20her%20contributions%20to%20this%20role%20and%20what%20can%20she%20gain%20from%20this%20role." 
-                class="inline-block" 
-                target="_blank">
-                <img src="images/lets-ask-lechat.png" 
-                        alt="Le Chat Response" 
-                        class="hover:opacity-90 transition-opacity mx-auto border-2 border-black"
-                        style="width: 500px; height: auto;" />
-            </a>
-        </div>
-    </section>
-
-    <!-- Call to Action -->
-    <div class="max-w-4xl mx-auto px-6 text-center py-20">
-        <h2 class="text-3xl font-bold mb-8">Ready to collaborate on AI documentation?</h2>
-        <div class="flex justify-center space-x-6">
-            <a href="mailto:namratabhatia21@gmail.com" class="hover:text-orange-500">Contact me →</a>
-            <a href="https://www.linkedin.com/in/namratabhatia21/" target="_blank" class="hover:text-orange-500">LinkedIn →</a>
-            <a href="https://www.linkedin.com/in/namratabhatia21/details/recommendations/?detailScreenTabIndex=0" target="_blank" class="hover:text-orange-500">Endorsements →</a>
-            <a href="assets/Resume_NamrataBhatia_TechnicalWriter.pdf" target="_blank" class="hover:text-orange-500">CV →</a>
-        </div>
+<!-- ═══════════ HERO ═══════════ -->
+<header class="hero" id="top" data-hud>
+  <div class="gridbg"></div>
+  <div class="spot" id="spot"></div>
+  <svg class="net" id="net" viewBox="0 0 760 560" aria-hidden="true">
+    <defs><filter id="netglow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+  </svg>
+  <div class="fade"></div>
+  <div class="wrap copy">
+    <div class="tag">// AI ENGINEER · DATA SCIENTIST · SYSTEMS THINKER</div>
+    <h1 id="headline"><span data-scramble>I design systems,</span><br><span class="accent" data-scramble>not just models.</span></h1>
+    <p class="lead">Production LLM pipelines, RAG and agents, designed end to end: ingestion, queues, models, evaluation, people in the loop and operations. Before AI I worked on enterprise ERP and analytics platforms, and I still think about the whole system first.</p>
+    <div class="term" aria-label="Principles">
+      <div class="bar"><i></i><i></i><i></i><span>~/namrata — zsh</span></div>
+      <pre id="heroTerm"></pre>
     </div>
+    <div class="btns">
+      <a class="btn primary" href="#system">▶ watch the system build</a>
+      <a class="btn" href="https://github.com/namratabhatia21">github</a>
+      <a class="btn" data-link="linkedin" href="#" hidden>linkedin</a>
+      <a class="btn" data-link="cv" href="#" hidden>cv.pdf</a>
+    </div>
+  </div>
+</header>
 
-      <style>
-        .color-bands {
-          width: 100%;
-          height: 300px;
-          display: flex;
-          flex-direction: column;
-        }
-        
-        .band {
-          flex: 1;
-          text-align: center;
-        }
-      
-        .centered-gif {
-          max-height: 50px;
-          width: auto;
-          margin: 0 auto;
-        }
-      </style>
-      
+<div class="ticker" aria-hidden="true"><div class="track" id="ticker"></div></div>
 
-    <footer class="relative mt-5">
-        <!-- Color Bands Container -->
-        <div class="color-bands">
-            <div class="band" style="background: hsla(45, 100%, 88%, 1)">
-                <img src="images/pixel-cat.gif" alt="pixel-cat" class="centered-gif">
-            </div>
-            <div class="band" style="background: hsla(51, 100%, 50%, 1)"></div>
-            <div class="band" style="background: hsla(41, 100%, 50%, 1)"></div>
-            <div class="band" style="background: hsla(30, 100%, 51%, 1)"></div>
-            <div class="band" style="background: hsla(17, 96%, 52%, 1)"></div>
-            <div class="band" style="background: hsla(1, 100%, 44%, 1)"></div>
-        </div>   
-    
-        <!-- Black Footer Content -->
-        <div class="bg-black text-white py-4">
-            <div class="mt-1 pt-1">
-                <p class="text-sm text-gray-400 text-center">
-                    This webpage is intended solely for the purpose of applying for the Technical Writer position at Mistral AI. All design elements and graphics are the property of Mistral AI.
-                </p>
-            </div>
+<main>
+<!-- ═══════════ SYSTEM ═══════════ -->
+<section id="system" aria-labelledby="system-h">
+  <div class="grow" id="grow">
+    <div class="stage" id="stage" data-hud>
+      <svg class="scene" id="scene" role="img" aria-labelledby="scene-t" viewBox="0 0 1600 900">
+        <title id="scene-t">Architecture diagram that builds as you scroll: requirements flow from DOORS through ingestion, a queue, autoscaled workers, a BERT classifier, parallel LLM rule agents and engineer review, with tracing and evaluation underneath feeding rejected findings back.</title>
+        <defs>
+          <pattern id="gMinor" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="var(--grid)" stroke-width="1"/></pattern>
+          <pattern id="gMajor" width="100" height="100" patternUnits="userSpaceOnUse"><rect width="100" height="100" fill="url(#gMinor)"/><path d="M100 0H0V100" fill="none" stroke="var(--grid2)" stroke-width="1.2"/></pattern>
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <rect x="-4000" y="-4000" width="10000" height="10000" fill="url(#gMajor)"/>
+        <g id="dims"></g>
+        <g id="edges"></g>
+        <g id="comps"></g>
+        <g id="traffic"></g>
+      </svg>
+      <div class="overlay ov-tl"><b>SYS</b> requirements-quality-platform · <span id="zoom">zoom 1.0×</span><span class="live" id="live">LIVE · simulated traffic</span></div>
+      <div class="overlay ov-bl">build <b id="buildN">0/7</b><span class="bars" id="buildBars"></span></div>
+      <div class="title" id="stageTitle">
+        <div class="tag">// A SYSTEM I DESIGNED</div>
+        <h2 id="system-h">Requirements in, reviewed findings out.</h2>
+        <p>An enterprise AI platform that checks engineering requirements for quality. Scroll to build it one component at a time. Each component comes with the decision record behind it.</p>
+      </div>
+      <aside class="adr" id="adr" aria-live="polite">
+        <div class="hdr"><span id="adrId">ADR-000</span><span class="st">ACCEPTED</span></div>
+        <div class="body"><div class="swap" id="adrBody">
+          <div class="comp" id="adrComp"></div>
+          <h3 id="adrTitle"></h3>
+          <dl><div><dt>Decision</dt><dd id="adrDecision"></dd></div><div><dt>Rationale</dt><dd id="adrWhy"></dd></div></dl>
+        </div></div>
+        <div class="steps" id="steps"></div>
+        <div class="intro" id="adrIntro">
+          <div class="tag">// SCROLL TO BUILD</div>
+          <h3 style="font-size:1.4rem;margin:8px 0">7 components, 7 decisions.</h3>
+          <p style="color:var(--muted);margin:0;font-size:.95rem">The camera follows each component as it's built. At the end it zooms out, simulated traffic starts flowing, and the system scales itself.</p>
         </div>
-    </footer>
+      </aside>
+      <ol class="steps-list" id="stepsList"></ol>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ DECISIONS ═══════════ -->
+<section id="tradeoffs" class="pad">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="tag">// TRADE-OFFS</div>
+      <h2>Architecture is mostly saying no.</h2>
+      <p>Three diffs where the obvious option lost, and why.</p>
+    </div>
+    <div class="diffs">
+      <article class="diff reveal" style="--i:0">
+        <div class="file"><span>adr-001/model-selection.yaml</span><span>+2 −1</span></div>
+        <pre><span class="rm" style="--l:0">- llm: everything</span><span class="ad" style="--l:1">+ classifier: bert-finetuned   # volume</span><span class="ad" style="--l:2">+ llm: rules_needing_judgement</span></pre>
+        <div class="txt"><h3>A small model for the volume, an LLM for the judgement</h3>
+        <p>Classification is high-volume and well defined. A fine-tuned BERT does it in milliseconds, costs almost nothing and gives accuracy I can measure. The LLM only handles the rules that actually need reasoning.</p></div>
+      </article>
+      <article class="diff reveal" style="--i:1">
+        <div class="file"><span>adr-002/context-building.py</span><span>+1 −1</span></div>
+        <pre><span class="rm" style="--l:0">- context = llm.rephrase(inputs)</span><span class="ad" style="--l:1">+ context = concat(inputs)</span><span class="cm" style="--l:2">  # same eval score, less latency</span></pre>
+        <div class="txt"><h3>Tested both, shipped the simpler one</h3>
+        <p>Rephrasing context with an LLM sounded smarter. On the evaluation set it didn't beat plain concatenation, and it added latency, cost and a new way to fail. So the simple version shipped.</p></div>
+      </article>
+      <article class="diff reveal" style="--i:2">
+        <div class="file"><span>adr-003/operations.yaml</span><span>+3 −1</span></div>
+        <pre><span class="rm" style="--l:0">- observability: after_first_incident</span><span class="ad" style="--l:1">+ queue: retries + dead_letter</span><span class="ad" style="--l:2">+ tracing: every_step</span><span class="ad" style="--l:3">+ dashboards: day_one</span></pre>
+        <div class="txt"><h3>Designed to be run, not just to run</h3>
+        <p>Queueing, retries, tracing and dashboards shipped with the first version. If nobody can see what a system is doing, it isn't finished.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CAREER LOG ═══════════ -->
+<section id="path" class="pad" style="padding-top:20px">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="tag">// GIT LOG --GRAPH</div>
+      <h2>Always systems, one version at a time.</h2>
+      <p>ERP systems, then analytics platforms, then AI platforms. The scale and the models changed. The habit of asking how the whole thing fits together didn't.</p>
+    </div>
+    <!-- TODO(Namrata): check the wording and add dates if you want them. -->
+    <div class="git" id="git">
+      <svg id="gitGraph" aria-hidden="true"></svg>
+      <div class="commit" data-lane="0" style="--cc:var(--c0)">
+        <div class="ref"><span class="v">v1.0</span><span class="b">accenture</span></div>
+        <h3>Enterprise ERP systems</h3>
+        <p>Large integrated systems: data flowing between modules, and what breaks downstream when one part changes.</p>
+        <div class="msg">"learn how big systems actually behave"</div></div>
+      <div class="commit" data-lane="0" style="--cc:var(--c1)">
+        <div class="ref"><span class="v">v2.0</span><span class="b">novartis</span></div>
+        <h3>Analytics platform</h3>
+        <p>From running systems to building on their data: pipelines, models, and the people who rely on the numbers.</p>
+        <div class="msg">"build on the data, not just the system"</div></div>
+      <div class="commit" data-lane="1" style="--cc:var(--c3)">
+        <div class="ref"><span class="v">branch</span><span class="b">msc/ai</span></div>
+        <h3>MSc: the switch to AI</h3>
+        <p>NLP, LLMs and retrieval, including a RAG research assistant built from scratch.</p>
+        <div class="msg">"add ai capabilities"</div></div>
+      <div class="commit" data-lane="0" data-merge style="--cc:var(--c6);padding-bottom:0">
+        <div class="ref"><span class="v">v3.0</span><span class="b">HEAD → alstom</span><span class="b" style="--cc:var(--c4)">tag: lecturer@emlyon</span><span class="b" style="--cc:var(--c5)">tag: wids</span></div>
+        <h3>AI Engineer, enterprise AI platform</h3>
+        <p>Designing and building production LLM systems end to end: ingestion, agents, evaluation and operations on Azure. I also teach at emlyon business school and I'm involved with Women in Data Science (WiDS).</p>
+        <div class="msg">"merge msc/ai: systems + ai"</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SERVICES ═══════════ -->
+<section id="work" class="pad" style="padding-top:20px">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="tag">// SERVICES I RUN IN PUBLIC</div>
+      <h2>Code you can read.</h2>
+      <p>Each repo has a README with the problem, the architecture, the trade-offs and how to run it.</p>
+    </div>
+    <div class="services">
+      <a class="svc reveal" style="--i:0;--sc:var(--c4)" href="https://github.com/namratabhatia21/Agentic">
+        <div class="top"><span class="run">running</span><span>svc/agentic ↗</span></div>
+        <svg viewBox="0 0 460 120" aria-hidden="true">
+          <g fill="none" stroke="var(--line)" stroke-width="1.5"><rect x="20" y="44" width="80" height="32" rx="6"/><rect x="150" y="44" width="90" height="32" rx="6"/><rect x="300" y="14" width="130" height="28" rx="6"/><rect x="300" y="50" width="130" height="28" rx="6"/><rect x="300" y="86" width="130" height="28" rx="6"/></g>
+          <g fill="none" stroke="var(--c4)" stroke-width="1.5" class="flow"><path d="M100 60H150"/><path d="M240 60H270V28H300M270 60V64H300M270 60V100H300"/></g>
+          <g font-family="JetBrains Mono, monospace" font-size="10" fill="var(--muted)"><text x="60" y="64" text-anchor="middle">chat ui</text><text x="195" y="64" text-anchor="middle">agent loop</text><text x="365" y="32" text-anchor="middle">tools · web/arxiv</text><text x="365" y="68" text-anchor="middle">pgvector · hybrid</text><text x="365" y="104" text-anchor="middle">sql · images</text></g>
+        </svg>
+        <div class="in"><h3>Agentic</h3>
+          <p>A chatbot that works from live data. It plans, calls tools in parallel and cites its sources, with every step streamed to the browser. Hybrid pgvector and keyword retrieval, Claude or open-weight models, Prometheus/Grafana, CI and a Cloud Run deploy.</p>
+          <div class="chips"><span>agents</span><span>rag</span><span>fastapi</span><span>pgvector</span><span>redis</span><span>docker</span><span>grafana</span></div></div>
+      </a>
+      <!-- TODO(Namrata): point this at the RAG research assistant repo. -->
+      <a class="svc reveal" style="--i:1;--sc:var(--c3)" href="https://github.com/namratabhatia21?tab=repositories">
+        <div class="top"><span class="run">running</span><span>svc/rag-research ↗</span></div>
+        <svg viewBox="0 0 460 120" aria-hidden="true">
+          <g fill="none" stroke="var(--line)" stroke-width="1.5"><rect x="20" y="44" width="80" height="32" rx="6"/><rect x="140" y="44" width="80" height="32" rx="6"/><rect x="260" y="44" width="80" height="32" rx="6"/><rect x="370" y="44" width="70" height="32" rx="6"/></g>
+          <g fill="none" stroke="var(--c3)" stroke-width="1.5" class="flow"><path d="M100 60H140M220 60H260M340 60H370"/></g>
+          <g font-family="JetBrains Mono, monospace" font-size="10" fill="var(--muted)"><text x="60" y="64" text-anchor="middle">papers</text><text x="180" y="64" text-anchor="middle">embed</text><text x="300" y="64" text-anchor="middle">retrieve</text><text x="405" y="64" text-anchor="middle">answer</text></g>
+        </svg>
+        <div class="in"><h3>RAG research assistant</h3>
+          <p>Retrieval-augmented question answering over research papers: chunking, embeddings, retrieval and grounded answers with references.</p>
+          <div class="chips"><span>rag</span><span>nlp</span><span>llm</span><span>embeddings</span></div></div>
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer id="contact">
+  <div class="gridbg"></div>
+  <div class="wrap">
+    <div class="tag">// CONTACT</div>
+    <h2>Let's design something<br>that holds up in production.</h2>
+    <div class="term" id="footTermWrap">
+      <div class="bar"><i></i><i></i><i></i><span>~/namrata — zsh</span></div>
+      <pre id="footTerm"></pre>
+    </div>
+    <div class="btns">
+      <a class="btn primary" href="https://github.com/namratabhatia21">github</a>
+      <a class="btn" data-link="linkedin" href="#" hidden>linkedin</a>
+      <a class="btn" data-link="cv" href="#" hidden>cv.pdf</a>
+    </div>
+    <small>// hand-built: one HTML file, inline SVG, no frameworks</small>
+  </div>
+</footer>
 
 <script>
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
+// ── Edit your links here ───────────────────────────────────────────────
+const LINKS = {
+  linkedin: "", // e.g. "https://www.linkedin.com/in/your-handle/"
+  cv: ""        // e.g. "assets/your-cv.pdf"
+};
+const STACK = ["python", "llm pipelines", "rag", "agents", "evaluation", "bert", "azure", "docker", "fastapi", "queues & workers", "observability", "mlops", "system design"];
+
+const STAGES = [
+  { comp: "ingestion", title: "Decouple ingestion from the source tool",
+    decision: "Requirements are pulled from DOORS in bulk by a dedicated ingestion service and normalised once.",
+    why: "A DOORS outage or a schema change stops new data from arriving, but it doesn't break analysis." },
+  { comp: "queue", title: "One message per requirement",
+    decision: "A queue sits between ingestion and analysis. Each requirement is its own message.",
+    why: "Whole specifications land at once. The queue absorbs the burst, and retries happen per requirement rather than per batch." },
+  { comp: "workers", title: "Autoscale workers with demand",
+    decision: "A pool of stateless workers takes messages from the queue. It scales out when a review wave hits and back in between waves.",
+    why: "The load is spiky. Scaling with demand means cost follows usage, not peak capacity." },
+  { comp: "classifier", title: "Small model first",
+    decision: "A fine-tuned BERT classifier labels and routes every requirement before any LLM sees it.",
+    why: "This step is high-volume and well defined. A small model makes it fast, cheap, deterministic and measurable." },
+  { comp: "rule-agents", title: "One agent per rule",
+    decision: "LLM agents run in parallel. Each one checks a single writing rule: ambiguity, testability, completeness and so on.",
+    why: "The LLM is used only where judgement is needed. Separate agents can be evaluated, tuned and rolled back on their own." },
+  { comp: "review", title: "The system proposes, engineers decide",
+    decision: "Engineers accept or reject every finding in a review UI. Nothing is applied automatically.",
+    why: "Accountability stays with the people who sign off the specification, and every decision becomes a labelled data point." },
+  { comp: "tracing + eval", title: "Trace everything, turn mistakes into tests",
+    decision: "Every step emits traces. Rejected findings go into the evaluation set and run as regression tests.",
+    why: "Observability was there from day one. The system's mistakes become its tests, and that's the loop that keeps it improving." }
+];
+const N = STAGES.length;
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const fine = matchMedia("(pointer:fine)").matches;
+const NS = "http://www.w3.org/2000/svg";
+const $ = id => document.getElementById(id);
+const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent && parent.appendChild(e); return e; };
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const ease = t => 1 - Math.pow(1 - t, 3);
+const smooth = t => t * t * (3 - 2 * t);
+const rnd = (a, b) => a + Math.random() * (b - a);
+const col = i => `var(--c${i})`;
+
+document.querySelectorAll("[data-link]").forEach(a => { const u = LINKS[a.dataset.link]; if (u) { a.href = u; a.hidden = false; } });
+
+// ── hero: scramble headline, typed terminal, live service graph ───────
+const GLYPHS = "<>/{}[]=+*#01_-";
+function scramble(node, delay) {
+  const final = node.textContent; if (reduce) return;
+  node.textContent = final.replace(/\S/g, " ");
+  const start = performance.now() + delay, dur = 900;
+  (function f(now) {
+    const t = clamp((now - start) / dur);
+    node.textContent = [...final].map((c, i) => c === " " ? " " : (i / final.length < t ? c : (t > 0 ? GLYPHS[Math.floor(Math.random() * GLYPHS.length)] : " "))).join("");
+    if (t < 1) requestAnimationFrame(f);
+  })(performance.now());
+}
+document.querySelectorAll("[data-scramble]").forEach((n, i) => scramble(n, 200 + i * 500));
+
+const PR = '<span class="p">$</span> ';
+function typeTerm(pre, lines, startDelay = 0) {
+  if (reduce) { pre.innerHTML = lines.map(l => l.type ? PR + l.type : l.html).join("\n"); return; }
+  let li = 0, ci = 0; const out = [];
+  const step = () => {
+    if (li >= lines.length) { pre.innerHTML = out.join("\n") + '\n' + PR + '<span class="caret"></span>'; return; }
+    const l = lines[li];
+    if (!l.type) { out.push(l.html); li++; pre.innerHTML = out.join("\n"); return setTimeout(step, 250); }
+    ci++;
+    pre.innerHTML = [...out, PR + l.type.slice(0, ci)].join("\n") + '<span class="caret"></span>';
+    if (ci >= l.type.length) { out.push(PR + l.type); li++; ci = 0; return setTimeout(step, 380); }
+    setTimeout(step, 28 + Math.random() * 40);
+  };
+  setTimeout(step, startDelay);
+}
+typeTerm($("heroTerm"), [
+  { type: "whoami" },
+  { html: '<span class="k">ai-engineer</span> <span class="d">— llm pipelines · rag · agents · mlops</span>' },
+  { type: "cat principles.txt" },
+  { html: '<span class="d">1.</span> simple beats clever <span class="d">(measure it)</span>\n<span class="d">2.</span> observable by default\n<span class="d">3.</span> humans stay in the loop' }
+], 1700);
+
+(() => {
+  const svg = $("net");
+  const nodes = [[90, 280, 0], [230, 160, 1], [230, 400, 1], [380, 280, 2], [520, 120, 3], [520, 280, 4], [520, 440, 4], [660, 200, 5], [660, 380, 6], [380, 470, 6], [380, 90, 0]];
+  const links = [[0, 1], [0, 2], [1, 3], [2, 3], [3, 4], [3, 5], [3, 6], [4, 7], [5, 7], [5, 8], [6, 8], [2, 9], [1, 10], [10, 4]];
+  const paths = links.map(([a, b], i) => {
+    const [x1, y1] = nodes[a], [x2, y2] = nodes[b], mx = (x1 + x2) / 2;
+    const p = el("path", { d: `M${x1} ${y1}H${mx}V${y2}H${x2}`, fill: "none", stroke: "var(--line)", "stroke-width": 1.5, pathLength: 1, "stroke-dasharray": 1, "stroke-dashoffset": reduce ? 0 : 1 }, svg);
+    if (!reduce) p.animate([{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }], { duration: 900, delay: 300 + i * 90, fill: "forwards", easing: "ease-out" });
+    return p;
+  });
+  nodes.forEach(([x, y, c], i) => {
+    const g = el("g", { transform: `translate(${x} ${y})` }, svg);
+    const inner = el("g", {}, g);
+    el("rect", { x: -22, y: -16, width: 44, height: 32, rx: 6, fill: "var(--panel)", stroke: col(c), "stroke-width": 1.6 }, inner);
+    el("rect", { x: -12, y: -4, width: 24, height: 3, rx: 1.5, fill: col(c), opacity: .8 }, inner);
+    el("rect", { x: -12, y: 3, width: 14, height: 3, rx: 1.5, fill: col(c), opacity: .4 }, inner);
+    if (!reduce) inner.animate([{ opacity: 0, transform: "translateY(10px)" }, { opacity: 1, transform: "none" }], { duration: 600, delay: 200 + i * 80, fill: "both", easing: "ease-out" });
+  });
+  if (reduce) return;
+  const lens = paths.map(p => p.getTotalLength());
+  const packets = [...Array(9)].map(() => { const k = Math.floor(rnd(0, paths.length)); return { k, u: rnd(0, 1), v: rnd(.25, .5), c: el("rect", { width: 6, height: 6, rx: 1, fill: col(Math.floor(rnd(0, 7))), filter: "url(#netglow)" }, svg) }; });
+  let last = performance.now();
+  (function tick(now) {
+    const dt = (now - last) / 1000; last = now;
+    if (scrollY < innerHeight * 1.2) for (const p of packets) {
+      p.u += dt * p.v; if (p.u > 1) { p.u = 0; p.k = Math.floor(rnd(0, paths.length)); }
+      const pt = paths[p.k].getPointAtLength(p.u * lens[p.k]);
+      p.c.setAttribute("x", (pt.x - 3).toFixed(1)); p.c.setAttribute("y", (pt.y - 3).toFixed(1));
+    }
+    requestAnimationFrame(tick);
+  })(last);
+})();
+
+const ticker = $("ticker");
+ticker.innerHTML = [...STACK, ...STACK, ...STACK, ...STACK].map(s => `<span>${s}</span>`).join("");
+
+// ── blueprint diagram ──────────────────────────────────────────────────
+const scene = $("scene"), EDGES = $("edges"), COMPS = $("comps"), DIMS = $("dims");
+const rr = (x, y, w, h, r = 8) => `M${x + r} ${y}H${x + w - r}Q${x + w} ${y} ${x + w} ${y + r}V${y + h - r}Q${x + w} ${y + h} ${x + w - r} ${y + h}H${x + r}Q${x} ${y + h} ${x} ${y + h - r}V${y + r}Q${x} ${y} ${x + r} ${y}Z`;
+function box(s, d, x, y, w, h, c, title, sub) {
+  const g = el("g", {}, COMPS);
+  el("path", { d: rr(x, y, w, h), fill: c, "fill-opacity": .08, stroke: "none", "data-s": s, "data-a": "fade", "data-d": d + .25, "data-w": .3 }, g);
+  el("path", { d: rr(x, y, w, h), fill: "none", stroke: c, "stroke-width": 2, pathLength: 1, "data-s": s, "data-a": "draw", "data-d": d, "data-w": .35 }, g);
+  if (title) el("text", { x: x + 12, y: y + 24, class: "t1", "data-s": s, "data-a": "type", "data-d": d + .2, "data-w": .3, "data-text": title }, g);
+  if (sub) el("text", { x: x + 12, y: y + 42, class: "t2", "data-s": s, "data-a": "type", "data-d": d + .3, "data-w": .3, "data-text": sub }, g);
+}
+function edge(s, d, pts, c, o = {}) {
+  const dd = "M" + pts.map(p => p.join(" ")).join("L"), dw = o.dw || .3;
+  el("path", { d: dd, fill: "none", stroke: c, "stroke-width": o.w || 2, pathLength: 1, "stroke-linejoin": "round", opacity: o.op || 1, "data-s": s, "data-a": "draw", "data-d": d, "data-w": dw }, EDGES);
+  if (o.march) el("path", { d: dd, fill: "none", stroke: c, "stroke-width": (o.w || 2) + .6, class: "march", "data-s": s, "data-a": "fade", "data-d": d + dw, "data-w": .2 }, EDGES);
+  if (o.arrow !== false) {
+    const [x2, y2] = pts[pts.length - 1], [x1, y1] = pts[pts.length - 2], a = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+    const g = el("g", { transform: `translate(${x2} ${y2}) rotate(${a})` }, EDGES);
+    el("path", { d: "M0 0L-10 -5L-10 5Z", fill: c, "data-s": s, "data-a": "pop", "data-d": Math.min(.95, d + dw), "data-w": .08 }, g);
+  }
+}
+function label(s, d, x, y, txt, cls = "t3", anchor = "start", fill) {
+  const t = el("text", { x, y, class: cls, "text-anchor": anchor, "data-s": s, "data-a": "type", "data-d": d, "data-w": .3, "data-text": txt }, COMPS);
+  if (fill) t.style.fill = fill;
+}
+function dim(s, d, x1, x2, y, txt) { // engineering dimension line
+  el("path", { d: `M${x1} ${y - 6}V${y + 6}M${x2} ${y - 6}V${y + 6}M${x1} ${y}H${x2}`, stroke: "var(--muted)", "stroke-width": 1, fill: "none", opacity: .6, "data-s": s, "data-a": "fade", "data-d": d, "data-w": .3 }, DIMS);
+  el("text", { x: (x1 + x2) / 2, y: y - 8, class: "t3", "text-anchor": "middle", "data-s": s, "data-a": "type", "data-d": d + .1, "data-w": .3, "data-text": txt }, DIMS);
+}
+
+// 0 · DOORS + ingestion
+(() => {
+  const s = 0, c = col(0), cx = 110, top = 350, w = 84, h = 100;
+  el("path", { d: `M${cx - w / 2} ${top}V${top + h}A${w / 2} 12 0 0 0 ${cx + w / 2} ${top + h}V${top}`, fill: c, "fill-opacity": .08, stroke: c, "stroke-width": 2, pathLength: 1, "data-s": s, "data-a": "draw", "data-w": .35 }, COMPS);
+  el("ellipse", { cx, cy: top, rx: w / 2, ry: 12, fill: "none", stroke: c, "stroke-width": 2, pathLength: 1, "data-s": s, "data-a": "draw", "data-d": .1, "data-w": .3 }, COMPS);
+  el("path", { d: `M${cx - w / 2} ${top + 34}A${w / 2} 12 0 0 0 ${cx + w / 2} ${top + 34}M${cx - w / 2} ${top + 66}A${w / 2} 12 0 0 0 ${cx + w / 2} ${top + 66}`, fill: "none", stroke: c, "stroke-width": 1.2, opacity: .6, pathLength: 1, "data-s": s, "data-a": "draw", "data-d": .25, "data-w": .3 }, COMPS);
+  label(s, .3, cx, top + h + 34, "DOORS", "t1", "middle");
+  label(s, .4, cx, top + h + 52, "requirements source", "t3", "middle");
+  box(s, .35, 210, 365, 150, 70, c, "ingestion", "pull · normalise");
+  edge(s, .55, [[cx + w / 2, 400], [210, 400]], c);
+  dim(s, .7, 210, 360, 340, "batch pull");
+})();
+
+// 1 · queue
+let QMSG = [];
+(() => {
+  const s = 1, c = col(1);
+  edge(s, 0, [[360, 400], [420, 400]], c);
+  box(s, .15, 420, 372, 180, 56, c);
+  for (let k = 1; k < 6; k++) el("path", { d: `M${420 + k * 30} 378V422`, stroke: c, "stroke-width": 1, opacity: .35, "data-s": s, "data-a": "fade", "data-d": .4, "data-w": .2 }, COMPS);
+  QMSG = [...Array(6)].map((_, k) => { const g = el("g", { transform: `translate(${585 - k * 30} 400)` }, COMPS); return el("rect", { x: -11, y: -14, width: 22, height: 28, rx: 3, fill: c, "fill-opacity": .75, "data-s": s, "data-a": "pop", "data-d": .45 + k * .07, "data-w": .12 }, g); });
+  label(s, .3, 420, 362, "queue", "t1");
+  label(s, .4, 420, 450, "1 msg/req · retries · DLQ");
+})();
+
+// 2 · autoscaled workers
+let PODS = [], REPL;
+(() => {
+  const s = 2, c = col(2);
+  edge(s, 0, [[600, 400], [650, 400]], c);
+  el("path", { d: rr(650, 250, 180, 300, 12), fill: "none", stroke: c, "stroke-width": 1.5, opacity: .7, pathLength: 1, "data-s": s, "data-a": "draw", "data-d": .1, "data-w": .3 }, COMPS);
+  label(s, .25, 662, 274, "autoscale group", "t3");
+  PODS = [...Array(5)].map((_, k) => {
+    const y = 290 + k * 48, g = el("g", { transform: `translate(740 ${y + 17})` }, COMPS);
+    const inner = el("g", { "data-s": s, "data-a": "pop", "data-d": .35 + k * .11, "data-w": .1 }, g);
+    el("rect", { x: -75, y: -17, width: 150, height: 34, rx: 6, fill: c, "fill-opacity": .14, stroke: c, "stroke-width": 1.6 }, inner);
+    el("circle", { cx: -60, cy: 0, r: 4, fill: c }, inner);
+    el("text", { x: -48, y: 4, class: "t2", style: "fill:var(--ink)" }, inner).textContent = `worker-${k + 1}`;
+    return inner;
+  });
+  REPL = el("text", { x: 662, y: 538, class: "t2", "data-s": s, "data-a": "fade", "data-d": .3, "data-w": .2 }, COMPS);
+  REPL.textContent = "replicas: 0";
+})();
+
+// 3 · classifier
+(() => {
+  const s = 3, c = col(3);
+  edge(s, 0, [[830, 400], [890, 400]], c);
+  box(s, .15, 890, 360, 160, 80, c, "classifier", "fine-tuned BERT");
+  ["label", "route", "tags"].forEach((t, k) => {
+    const g = el("g", { transform: `translate(${922 + k * 48} 464)` }, COMPS);
+    const i = el("g", { "data-s": s, "data-a": "pop", "data-d": .55 + k * .1, "data-w": .1 }, g);
+    el("rect", { x: -21, y: -10, width: 42, height: 20, rx: 10, fill: c, "fill-opacity": .2, stroke: c }, i);
+    el("text", { x: 0, y: 4, class: "t3", "text-anchor": "middle", style: "fill:var(--ink)" }, i).textContent = t;
+  });
+  dim(s, .7, 890, 1050, 342, "fast · cheap · measurable");
+})();
+
+// 4 · parallel rule agents
+const AGENT_Y = [281, 345, 409, 473];
+(() => {
+  const s = 4, c = col(4), names = ["ambiguity", "testability", "completeness", "…more rules"];
+  AGENT_Y.forEach((y, k) => {
+    edge(s, k * .06, [[1050, 400], [1085, 400], [1085, y + 23], [1120, y + 23]], c, { dw: .25 });
+    box(s, .15 + k * .1, 1120, y, 170, 46, c);
+    label(s, .3 + k * .1, 1134, y + 20, `rule · ${names[k]}`, "t2", "start", "var(--ink)");
+    label(s, .35 + k * .1, 1134, y + 36, "llm agent", "t3");
+  });
+  label(s, .1, 1120, 268, "fan-out · parallel", "t3");
+})();
+
+// 5 · engineer review
+(() => {
+  const s = 5, c = col(5);
+  AGENT_Y.forEach((y, k) => edge(s, k * .05, [[1290, y + 23], [1325, y + 23], [1325, 400], [1360, 400]], c, { dw: .25, arrow: k === 3 }));
+  box(s, .2, 1360, 330, 175, 140, c, "engineer review");
+  el("path", { d: "M1360 344H1535", stroke: c, opacity: .5, "data-s": s, "data-a": "fade", "data-d": .4 }, COMPS);
+  label(s, .45, 1374, 368, "finding:", "t3");
+  label(s, .48, 1374, 384, "\"shall be fast\"", "t3", "start", "var(--ink)");
+  label(s, .52, 1374, 400, "→ ambiguous: no metric", "t3", "start", "var(--c5)");
+  [["accept", 1376, "var(--c6)"], ["reject", 1446, "var(--c5)"]].forEach(([t, x, cc], k) => {
+    const g = el("g", { transform: `translate(${x + 30} 438)` }, COMPS);
+    const i = el("g", { "data-s": s, "data-a": "pop", "data-d": .6 + k * .1, "data-w": .1 }, g);
+    el("rect", { x: -30, y: -13, width: 60, height: 26, rx: 6, fill: cc, "fill-opacity": .2, stroke: cc }, i);
+    el("text", { x: 0, y: 4, class: "t3", "text-anchor": "middle", style: "fill:var(--ink)" }, i).textContent = t;
+  });
+  const g = el("g", { transform: "translate(1508 372)" }, COMPS), i = el("g", { "data-s": s, "data-a": "pop", "data-d": .75, "data-w": .1 }, g);
+  el("circle", { cy: -8, r: 7, fill: "none", stroke: c, "stroke-width": 1.6 }, i); el("path", { d: "M-11 12Q0 -4 11 12", fill: "none", stroke: c, "stroke-width": 1.6 }, i);
+})();
+
+// 6 · tracing + evaluation, feedback loop
+(() => {
+  const s = 6, c = col(6);
+  [[285, 435], [510, 428], [740, 550], [970, 474], [1205, 519], [1447, 470]].forEach(([x, y], k) =>
+    edge(s, .05 + k * .04, [[x, y], [x, 640]], c, { w: 1.2, dw: .2, op: .7, arrow: false }));
+  box(s, .2, 210, 640, 1325, 110, c, "tracing · evaluation", "every step emits spans · rejected findings → eval set → regression tests");
+  label(s, .45, 820, 662, "trace waterfall", "t3");
+  [[0, 120, 0], [90, 160, 1], [230, 200, 2], [400, 110, 3], [500, 260, 4], [740, 140, 5]].forEach(([o, w, k], j) => {
+    el("rect", { x: 820 + o * .85, y: 670 + j * 12, width: w * .85, height: 8, rx: 2, fill: col(k), opacity: .85, "data-s": s, "data-a": "fade", "data-d": .45 + j * .05, "data-w": .15 }, COMPS);
+  });
+  edge(s, .55, [[1535, 695], [1575, 695], [1575, 236], [1205, 236], [1205, 281]], c, { w: 2, dw: .3, march: true });
+  label(s, .75, 1568, 226, "feedback: eval set → agents", "t3", "end", "var(--c6)");
+  dim(s, .8, 210, 1535, 790, "cross-cutting: observability from day one");
+})();
+
+// ── animation plumbing ─────────────────────────────────────────────────
+const anims = [...scene.querySelectorAll("[data-a]")].map(e => ({ e, s: +e.dataset.s, a: e.dataset.a, d: +(e.dataset.d || 0), w: +(e.dataset.w || 0) || null, text: e.dataset.text }));
+let alive = false;
+function render(q) {
+  for (const o of anims) {
+    const sp = clamp(q - o.s), w = o.w || Math.max(.15, 1 - o.d), t = ease(clamp((sp - o.d) / w));
+    o.t = t;
+    if (alive && (PODS.includes(o.e) || QMSG.includes(o.e))) continue; // live mode drives these
+    if (o.a === "draw") o.e.style.strokeDashoffset = 1 - t;
+    else if (o.a === "pop") { o.e.style.opacity = t > 0 ? 1 : 0; o.e.setAttribute("transform", `scale(${t.toFixed(3)})`); }
+    else if (o.a === "type") { const n = Math.round(t * o.text.length); if (o.e._n !== n) { o.e.textContent = o.text.slice(0, n); o.e._n = n; } }
+    else o.e.style.opacity = t;
+  }
+  if (!alive) REPL.textContent = `replicas: ${anims.filter(o => PODS.includes(o.e) && o.t > .5).length}`;
+}
+
+// camera: one focus box per stage, fitted into the area the ADR card leaves free
+const FOCUS = [[260, 420, 640, 480], [430, 420, 760, 480], [650, 420, 820, 520], [900, 420, 820, 520], [1150, 410, 860, 520], [1330, 420, 820, 520], [800, 500, 1640, 620]];
+const stage = $("stage"), adr = $("adr");
+function camera(q) {
+  const W = stage.clientWidth, H = stage.clientHeight;
+  const wide = W >= 900 && W / H >= 1.4;
+  const r = wide ? { x: W * .03, y: 100, w: W - adr.offsetWidth - W * .1, h: H - 150 }
+                 : { x: 12, y: 96, w: W - 24, h: H - (reduce ? 0 : adr.offsetHeight) - 124 };
+  let f;
+  if (reduce) f = FOCUS[N - 1];
+  else { const i = Math.min(N - 1, Math.floor(q)), t = smooth(clamp((q - i - .72) / .28)), j = Math.min(N - 1, i + 1); f = FOCUS[i].map((v, k) => v + (FOCUS[j][k] - v) * t); }
+  const [cx, cy, bw, bh] = f, s = Math.min(r.w / bw, r.h / bh);
+  scene.setAttribute("viewBox", `${(cx - (r.x + r.w / 2) / s).toFixed(1)} ${(cy - (r.y + r.h / 2) / s).toFixed(1)} ${(W / s).toFixed(1)} ${(H / s).toFixed(1)}`);
+  const sAll = Math.min(r.w / FOCUS[N - 1][2], r.h / FOCUS[N - 1][3]);
+  $("zoom").textContent = `zoom ${(s / sAll).toFixed(1)}×`;
+}
+
+// ADR card + build bar
+const grow = $("grow"), steps = $("steps"), bars = $("buildBars");
+STAGES.forEach((st, i) => {
+  const b = document.createElement("button"); b.textContent = `0${i + 1}`; b.style.setProperty("--sc", col(i)); b.title = st.comp;
+  b.onclick = () => scrollTo({ top: grow.getBoundingClientRect().top + scrollY + (grow.offsetHeight - innerHeight) * ((i + .6) / N) * .92, behavior: reduce ? "auto" : "smooth" });
+  steps.appendChild(b);
+  bars.appendChild(document.createElement("i"));
+  const li = document.createElement("li"); li.innerHTML = `<b style="color:${col(i)}">ADR-00${i + 1} · ${st.title}.</b> ${st.decision} <span style="color:var(--muted)">${st.why}</span>`; $("stepsList").appendChild(li);
+});
+let current = -2;
+function setADR(i) {
+  if (i === current) return; current = i;
+  $("adrIntro").classList.toggle("gone", i >= 0);
+  [...steps.children].forEach((b, k) => b.classList.toggle("on", k <= i));
+  [...bars.children].forEach((b, k) => b.style.background = k <= i ? col(k) : "transparent");
+  $("buildN").textContent = `${Math.max(0, i + 1)}/${N}`;
+  if (i < 0) return;
+  $("adrBody").classList.add("out");
+  setTimeout(() => {
+    const st = STAGES[i];
+    adr.style.setProperty("--accent", col(i));
+    $("adrId").textContent = `ADR-00${i + 1}`; $("adrComp").textContent = `component: ${st.comp}`;
+    $("adrTitle").textContent = st.title; $("adrDecision").textContent = st.decision; $("adrWhy").textContent = st.why;
+    $("adrBody").classList.remove("out");
+  }, reduce ? 0 : 200);
+}
+
+// ── git graph ──────────────────────────────────────────────────────────
+const gitSvg = $("gitGraph"), commits = [...document.querySelectorAll(".commit")];
+let gitPaths = [];
+function buildGit() {
+  gitSvg.innerHTML = "";
+  const top = $("git").getBoundingClientRect().top;
+  const ys = commits.map(c => c.getBoundingClientRect().top - top + 10);
+  const L = [24, 64];
+  const main = el("path", { d: `M${L[0]} ${ys[0]}V${ys[3]}`, stroke: "var(--c0)", pathLength: 1, "stroke-dasharray": 1 }, gitSvg);
+  const br = el("path", { d: `M${L[0]} ${ys[1] + 14}C${L[0]} ${ys[1] + 60} ${L[1]} ${ys[1] + 40} ${L[1]} ${ys[1] + 80}V${ys[2]}C${L[1]} ${ys[3] - 50} ${L[0]} ${ys[3] - 40} ${L[0]} ${ys[3] - 8}`, stroke: "var(--c3)", pathLength: 1, "stroke-dasharray": 1 }, gitSvg);
+  gitPaths = [main, br];
+  commits.forEach((c, i) => {
+    const x = L[+c.dataset.lane], y = ys[i];
+    el("path", { d: `M${x + 12} ${y}H92`, stroke: "var(--line)", "stroke-width": 1, "stroke-dasharray": "3 4" }, gitSvg);
+    el("circle", { cx: x, cy: y, r: c.hasAttribute("data-merge") ? 9 : 7, fill: "var(--bg)", stroke: getComputedStyle(c).getPropertyValue("--cc").trim(), "stroke-width": 3 }, gitSvg);
+  });
+  drawGit();
+}
+function drawGit() {
+  if (!gitPaths.length) return;
+  const g = $("git").getBoundingClientRect(), t = reduce ? 1 : clamp((innerHeight * .7 - g.top) / g.height);
+  gitPaths[0].style.strokeDashoffset = 1 - t;
+  gitPaths[1].style.strokeDashoffset = 1 - clamp((t - .2) / .7);
+}
+
+// ── scroll ─────────────────────────────────────────────────────────────
+function onScroll() {
+  const r = grow.getBoundingClientRect();
+  const q = reduce ? N : clamp(clamp(-r.top / (r.height - innerHeight)) / .92) * N;
+  alive = !reduce && q >= N - .02;
+  render(q); camera(q);
+  setADR(q <= .03 ? -1 : Math.min(N - 1, Math.floor(q - .03)));
+  $("stageTitle").classList.toggle("hide", q > .3);
+  $("live").classList.toggle("on", alive);
+  const doc = document.documentElement;
+  $("progress").style.transform = `scaleX(${(scrollY / (doc.scrollHeight - innerHeight)).toFixed(4)})`;
+  const W = ticker.scrollWidth / 4; ticker.style.transform = `translateX(${(-(scrollY * .6) % W).toFixed(1)}px)`;
+  drawGit();
+}
+buildGit(); addEventListener("load", buildGit);
+if (document.fonts) document.fonts.ready.then(buildGit);
+addEventListener("resize", () => { buildGit(); onScroll(); });
+let ticking = false;
+addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { onScroll(); ticking = false; }); } }, { passive: true });
+onScroll();
+
+// ── live mode: simulated traffic, autoscaling, telemetry ───────────────
+(() => {
+  if (reduce) return;
+  const T = $("traffic");
+  const routes = AGENT_Y.map(y => el("path", { d: `M152 400H1085V${y + 23}H1325V400H1360`, fill: "none", visibility: "hidden" }, T));
+  const lens = routes.map(r => r.getTotalLength());
+  const colorAt = x => col(x < 360 ? 0 : x < 600 ? 1 : x < 830 ? 2 : x < 1085 ? 3 : x < 1325 ? 4 : 5);
+  const pk = [...Array(14)].map((_, k) => ({ r: k % 4, u: -k * .07, x: 0, c: el("rect", { width: 9, height: 9, rx: 2, opacity: 0, filter: "url(#glow)" }, T) }));
+  const tele = [], TAPS = [[285, 435], [510, 428], [740, 550], [970, 474], [1205, 519]];
+  let fade = 0, last = performance.now(), wasAlive = false;
+  (function tick(now) {
+    const dt = Math.min(50, now - last), ts = now / 1000; last = now;
+    fade = clamp(fade + (alive ? 1 : -1) * dt / 600);
+    if (alive) {
+      const load = .5 + .5 * Math.sin(ts * .5); // simulated demand wave
+      const replicas = 2 + Math.round(load * 3), depth = 1 + Math.round(load * 5);
+      PODS.forEach((p, k) => { p.style.opacity = k < replicas ? 1 : .12; p.setAttribute("transform", "scale(1)"); });
+      QMSG.forEach((m, k) => { m.style.opacity = k < depth ? 1 : .1; m.setAttribute("transform", "scale(1)"); });
+      REPL.textContent = `replicas: ${replicas} · queue depth: ${depth}`;
+    } else if (wasAlive) onScroll();
+    wasAlive = alive;
+    for (const p of pk) {
+      if (fade <= 0) { p.c.setAttribute("opacity", 0); continue; }
+      const prevX = p.x;
+      p.u += dt / 6500;
+      if (p.u > 1) { p.u = 0; p.r = Math.floor(rnd(0, 4)); }
+      if (p.u < 0) { p.c.setAttribute("opacity", 0); continue; }
+      const pt = routes[p.r].getPointAtLength(p.u * lens[p.r]); p.x = pt.x;
+      p.c.setAttribute("x", (pt.x - 4.5).toFixed(1)); p.c.setAttribute("y", (pt.y - 4.5).toFixed(1));
+      p.c.setAttribute("fill", colorAt(pt.x)); p.c.setAttribute("opacity", fade.toFixed(2));
+      for (const [tx, ty] of TAPS) if (prevX < tx && pt.x >= tx && Math.random() < .6)
+        tele.push({ x: tx, y: ty, c: el("circle", { r: 3, fill: "var(--c6)", filter: "url(#glow)" }, T) });
+    }
+    for (let k = tele.length - 1; k >= 0; k--) {
+      const t = tele[k]; t.y += dt * .22;
+      t.c.setAttribute("cx", t.x); t.c.setAttribute("cy", t.y.toFixed(1)); t.c.setAttribute("opacity", fade.toFixed(2));
+      if (t.y > 640) { t.c.remove(); tele.splice(k, 1); }
+    }
+    requestAnimationFrame(tick);
+  })(last);
+})();
+
+// ── reveals, footer terminal, HUD cursor ──────────────────────────────
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  e.target.classList.add("in"); io.unobserve(e.target);
+  if (e.target.id === "footTermWrap") typeTerm($("footTerm"), [
+    { type: "ping namrata" },
+    { html: '<span class="k">reply</span> <span class="d">from namratabhatia21.github.io:</span> open to conversations about\nAI systems, RAG &amp; agents in production, and teaching.' },
+    { type: "open github" }
+  ], 300);
+}), { threshold: .25 });
+document.querySelectorAll(".reveal, .commit, #footTermWrap").forEach(n => io.observe(n));
+
+if (fine && !reduce) {
+  const hud = $("hud"), cx = $("crossX"), cy = $("crossY"), spot = $("spot");
+  addEventListener("pointermove", e => {
+    const on = !!e.target.closest("[data-hud]") && !e.target.closest(".adr,.term,.btn,a,p,h1,h2");
+    [hud, cx, cy].forEach(n => n.style.opacity = on ? 1 : 0);
+    hud.style.left = e.clientX + "px"; hud.style.top = e.clientY + "px";
+    cx.style.top = e.clientY + "px"; cy.style.left = e.clientX + "px";
+    if (on && e.target.closest("#stage")) {
+      const p = new DOMPoint(e.clientX, e.clientY).matrixTransform(scene.getScreenCTM().inverse());
+      hud.textContent = `x ${p.x.toFixed(0)}  y ${p.y.toFixed(0)}`;
+    } else hud.textContent = `x ${e.clientX}  y ${e.clientY}`;
+    const r = spot.getBoundingClientRect();
+    spot.style.setProperty("--mx", e.clientX - r.left + "px"); spot.style.setProperty("--my", e.clientY - r.top + "px");
+  });
+}
 </script>
-    <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
 </body>
 </html>
