@@ -197,6 +197,27 @@ section{position:relative}
 .chips span{font:500 11px var(--mono);padding:3px 8px;border-radius:6px;border:1px solid var(--line);color:var(--muted)}
 @media (max-width:820px){.services{grid-template-columns:1fr}}
 
+/* ── metrics ── */
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.metric{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 20px 24px;overflow:hidden;box-shadow:var(--shadow)}
+.metric .k{font:600 11px var(--mono);letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
+.metric .v{font:700 clamp(2rem,4vw,2.8rem)/1.1 var(--head);color:var(--mc);margin:10px 0 6px}
+.metric .s{font-size:.88rem;color:var(--muted)}
+.metric i{position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--mc);transform-origin:0 50%;transform:scaleX(0);transition:transform 1.4s cubic-bezier(.2,.7,.2,1) .3s;box-shadow:0 0 10px var(--mc)}
+.metric.in i{transform:scaleX(var(--p))}
+@media (max-width:900px){.metrics{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.metrics{grid-template-columns:1fr}}
+.commit .ref .d8{color:var(--muted);font-weight:500}
+.yamls{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.yamls .term{max-width:none}
+.yamls pre{min-height:0}
+@media (max-width:820px){.yamls{grid-template-columns:1fr}}
+.contact{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:680px;margin-top:20px;font:13px var(--mono)}
+.contact a,.contact div{display:flex;gap:12px;align-items:center;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);text-decoration:none;overflow-wrap:anywhere;transition:border-color .2s}
+.contact a:hover{border-color:var(--hi)}
+.contact .k{color:var(--hi);min-width:64px}
+@media (max-width:560px){.contact{grid-template-columns:1fr}}
+
 /* ── contact ── */
 footer{padding:110px 0 70px;position:relative;overflow:hidden}
 footer .gridbg{position:absolute;inset:0;opacity:.7;-webkit-mask-image:linear-gradient(transparent,#000 40%);mask-image:linear-gradient(transparent,#000 40%)}
@@ -228,6 +249,7 @@ footer small{display:block;margin-top:50px;color:var(--muted);font:12px var(--mo
   <ul>
     <li><a href="#system">/system</a></li>
     <li><a href="#tradeoffs">/decisions</a></li>
+    <li><a href="#metrics">/metrics</a></li>
     <li><a href="#path">/log</a></li>
     <li><a href="#work">/services</a></li>
     <li><a href="#contact">/contact</a></li>
@@ -245,7 +267,7 @@ footer small{display:block;margin-top:50px;color:var(--muted);font:12px var(--mo
   <div class="wrap copy">
     <div class="tag">// AI ENGINEER · DATA SCIENTIST · SYSTEMS THINKER</div>
     <h1 id="headline"><span data-scramble>I design systems,</span><br><span class="accent" data-scramble>not just models.</span></h1>
-    <p class="lead">Production LLM pipelines, RAG and agents, designed end to end: ingestion, queues, models, evaluation, people in the loop and operations. Before AI I worked on enterprise ERP and analytics platforms, and I still think about the whole system first.</p>
+    <p class="lead">I build production AI systems end to end: LLM pipelines, RAG, agents, evaluation and the people in the loop. Before AI, I spent seven years making enterprise systems like SAP S/4HANA usable for thousands of people. So I design for how a system is actually used, not just how it runs.</p>
     <div class="term" aria-label="Principles">
       <div class="bar"><i></i><i></i><i></i><span>~/namrata — zsh</span></div>
       <pre id="heroTerm"></pre>
@@ -254,6 +276,7 @@ footer small{display:block;margin-top:50px;color:var(--muted);font:12px var(--mo
       <a class="btn primary" href="#system">▶ watch the system build</a>
       <a class="btn" href="https://github.com/namratabhatia21">github</a>
       <a class="btn" data-link="linkedin" href="#" hidden>linkedin</a>
+      <a class="btn" data-link="email" href="#" hidden>email</a>
       <a class="btn" data-link="cv" href="#" hidden>cv.pdf</a>
     </div>
   </div>
@@ -306,6 +329,25 @@ footer small{display:block;margin-top:50px;color:var(--muted);font:12px var(--mo
 </section>
 
 <!-- ═══════════ DECISIONS ═══════════ -->
+<!-- ═══════════ METRICS ═══════════ -->
+<section id="metrics" class="pad" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="tag">// OBSERVED METRICS</div>
+      <h2>Numbers from the work.</h2>
+      <p>Measured results from production, consulting and enterprise projects.</p>
+    </div>
+    <div class="metrics">
+      <div class="metric reveal" style="--i:0;--mc:var(--c3);--p:.82"><div class="k">text classification accuracy</div><div class="v"><span data-count="55">55</span>% → <span data-count="82">82</span>%</div><div class="s">fine-tuned BERT · hierarchical labels · Alstom</div><i></i></div>
+      <div class="metric reveal" style="--i:1;--mc:var(--c0);--p:.75"><div class="k">rag indexing throughput</div><div class="v"><span data-count="3">3</span>×</div><div class="s">parallel extraction &amp; indexing · Alstom</div><i></i></div>
+      <div class="metric reveal" style="--i:2;--mc:var(--c1);--p:.9"><div class="k">client records modelled</div><div class="v"><span data-count="3">3</span>M+</div><div class="s">4 segments + recommender on Dask · Prosol</div><i></i></div>
+      <div class="metric reveal" style="--i:0;--mc:var(--c2);--p:1"><div class="k">users onboarded to SAP S/4HANA</div><div class="v"><span data-count="3000">3000</span>+</div><div class="s">led a team of 15 in Sydney · Accenture</div><i></i></div>
+      <div class="metric reveal" style="--i:1;--mc:var(--c4);--p:.95"><div class="k">workshop satisfaction</div><div class="v"><span data-count="95">95</span>%</div><div class="s">10+ business-unit leaders · Data &amp; AI strategy · Fastned</div><i></i></div>
+      <div class="metric reveal" style="--i:2;--mc:var(--c6);--p:1"><div class="k">msc gpa</div><div class="v"><span data-count="4" data-dec="1">4.0</span></div><div class="s">Data Science &amp; AI · emlyon × McGill</div><i></i></div>
+    </div>
+  </div>
+</section>
+
 <section id="tradeoffs" class="pad">
   <div class="wrap">
     <div class="head reveal">
@@ -316,7 +358,7 @@ footer small{display:block;margin-top:50px;color:var(--muted);font:12px var(--mo
     <div class="diffs">
       <article class="diff reveal" style="--i:0">
         <div class="file"><span>adr-001/model-selection.yaml</span><span>+2 −1</span></div>
-        <pre><span class="rm" style="--l:0">- llm: everything</span><span class="ad" style="--l:1">+ classifier: bert-finetuned   # volume</span><span class="ad" style="--l:2">+ llm: rules_needing_judgement</span></pre>
+        <pre><span class="rm" style="--l:0">- llm: everything</span><span class="ad" style="--l:1">+ classifier: bert-finetuned   # 55% → 82%</span><span class="ad" style="--l:2">+ llm: rules_needing_judgement</span></pre>
         <div class="txt"><h3>A small model for the volume, an LLM for the judgement</h3>
         <p>Classification is high-volume and well defined. A fine-tuned BERT does it in milliseconds, costs almost nothing and gives accuracy I can measure. The LLM only handles the rules that actually need reasoning.</p></div>
       </article>
@@ -341,32 +383,79 @@ footer small{display:block;margin-top:50px;color:var(--muted);font:12px var(--mo
   <div class="wrap">
     <div class="head reveal">
       <div class="tag">// GIT LOG --GRAPH</div>
-      <h2>Always systems, one version at a time.</h2>
-      <p>ERP systems, then analytics platforms, then AI platforms. The scale and the models changed. The habit of asking how the whole thing fits together didn't.</p>
+      <h2>From explaining systems to building them.</h2>
+      <p>Seven years designing training and documentation for enterprise software showed me how systems succeed or fail with real users. An MSc in Data Science &amp; AI turned that into building the systems myself.</p>
     </div>
-    <!-- TODO(Namrata): check the wording and add dates if you want them. -->
     <div class="git" id="git">
       <svg id="gitGraph" aria-hidden="true"></svg>
       <div class="commit" data-lane="0" style="--cc:var(--c0)">
-        <div class="ref"><span class="v">v1.0</span><span class="b">accenture</span></div>
-        <h3>Enterprise ERP systems</h3>
-        <p>Large integrated systems: data flowing between modules, and what breaks downstream when one part changes.</p>
+        <div class="ref"><span class="v">v0.1</span><span class="b">niit</span><span class="d8">2016 – 2017</span></div>
+        <h3>Instructional Designer / Technical Writer</h3>
+        <p>Learning-needs analysis and interactive courseware built with Java and HTML in SCORM packages. Quality control before release to the LMS.</p>
+        <div class="msg">"init: explain software to the people who use it"</div></div>
+      <div class="commit" data-lane="0" style="--cc:var(--c2)">
+        <div class="ref"><span class="v">v1.0</span><span class="b">accenture</span><span class="d8">2017 – 2020</span></div>
+        <h3>L&amp;D Consultant: enterprise systems from the user's side</h3>
+        <p>Led a team of 15 in Sydney on a large SAP S/4HANA and Ariba implementation training programme for 3,000+ employees, built on SAP Enable Now. Designed training for 8 technology projects (Oracle, Power BI, Alteryx, SAP supply chain, Salesforce) with stakeholders across APAC, EMEA and North America.</p>
         <div class="msg">"learn how big systems actually behave"</div></div>
       <div class="commit" data-lane="0" style="--cc:var(--c1)">
-        <div class="ref"><span class="v">v2.0</span><span class="b">novartis</span></div>
-        <h3>Analytics platform</h3>
-        <p>From running systems to building on their data: pipelines, models, and the people who rely on the numbers.</p>
-        <div class="msg">"build on the data, not just the system"</div></div>
+        <div class="ref"><span class="v">v2.0</span><span class="b">novartis</span><span class="d8">2020 – 2023</span></div>
+        <h3>Instructional Designer / Technical Writer: from documentation to data</h3>
+        <p>Delivered 5 training programmes for 1,000+ employees. Built learning analytics with Qlik Sense, Power BI and SQL that shaped business decisions, and initiatives that contributed 10% of the team's revenue target two years running. Top 10 in the Novartis Financial Datathon 2023.</p>
+        <div class="msg">"measure what the system does to people"</div></div>
       <div class="commit" data-lane="1" style="--cc:var(--c3)">
-        <div class="ref"><span class="v">branch</span><span class="b">msc/ai</span></div>
-        <h3>MSc: the switch to AI</h3>
-        <p>NLP, LLMs and retrieval, including a RAG research assistant built from scratch.</p>
+        <div class="ref"><span class="v">branch</span><span class="b">msc/ai</span><span class="d8">2023 – 2025</span></div>
+        <h3>MSc Data Science &amp; AI, emlyon × McGill</h3>
+        <p>GPA 4.0. Thesis: batch-effect correction, comparing machine learning algorithms with LLM utilities.</p>
         <div class="msg">"add ai capabilities"</div></div>
+      <div class="commit" data-lane="1" style="--cc:var(--c1)">
+        <div class="ref"><span class="v">feat</span><span class="b">prosol</span><span class="d8">2024</span></div>
+        <h3>Data Scientist: segmentation &amp; recommender</h3>
+        <p>Cleaned and processed 3M+ client records from Snowflake and refined the ETL pipeline. Found 4 customer segments with unsupervised learning and association rules, and built a collaborative recommender for the customers behind 40% of revenue using Dask. The company adopted it as a strategic initiative after I presented it to 10 executives.</p>
+        <div class="msg">"feat: recommender at 3M-client scale"</div></div>
+      <div class="commit" data-lane="1" style="--cc:var(--c4)">
+        <div class="ref"><span class="v">feat</span><span class="b">fastned</span><span class="d8">2024</span></div>
+        <h3>Data &amp; AI Consultant: strategy</h3>
+        <p>PESTEL and risk analysis for an EV-charging company, identifying 4 areas for Data &amp; AI investment. Ran 2 workshops with 10+ business-unit leaders (95% satisfaction) and wrote a year-long roadmap.</p>
+        <div class="msg">"docs: data &amp; ai roadmap"</div></div>
       <div class="commit" data-lane="0" data-merge style="--cc:var(--c6);padding-bottom:0">
-        <div class="ref"><span class="v">v3.0</span><span class="b">HEAD → alstom</span><span class="b" style="--cc:var(--c4)">tag: lecturer@emlyon</span><span class="b" style="--cc:var(--c5)">tag: wids</span></div>
-        <h3>AI Engineer, enterprise AI platform</h3>
-        <p>Designing and building production LLM systems end to end: ingestion, agents, evaluation and operations on Azure. I also teach at emlyon business school and I'm involved with Women in Data Science (WiDS).</p>
+        <div class="ref"><span class="v">v3.0</span><span class="b">HEAD → alstom</span><span class="d8">2024 – now</span><span class="b" style="--cc:var(--c5)">tag: wids-paris</span><span class="b" style="--cc:var(--c4)">tag: lecturer@emlyon</span></div>
+        <h3>Data Science &amp; AI Engineer</h3>
+        <p>Took text classification from 55% to 82% accuracy with fine-tuned BERT, hierarchical classification and few-shot function calling for rare classes. Made RAG indexing 3× faster with parallel processing, added semantic retrieval configuration and compared retrieval techniques. Took the work to production with DevOps and front-end teams, and wrote the docs and demo videos for the company-wide launch. Outside work, I'm co-ambassador of Women in Data Science (WiDS) Paris and a lecturer at emlyon business school.</p>
         <div class="msg">"merge msc/ai: systems + ai"</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CREDENTIALS ═══════════ -->
+<section id="credentials" class="pad" style="padding-top:20px">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="tag">// CREDENTIALS</div>
+      <h2>cat profile.yaml</h2>
+    </div>
+    <div class="yamls">
+      <div class="term reveal" style="--i:0"><div class="bar"><i></i><i></i><i></i><span>education.yaml</span></div>
+<pre><span class="k">- degree:</span> MSc Data Science &amp; AI
+  <span class="k">school:</span> emlyon business school, Paris
+          × McGill University, Montréal
+  <span class="k">when:</span> 2023 – 2025   <span class="k">gpa:</span> 4.0
+  <span class="k">thesis:</span> batch-effect correction —
+          ML algorithms vs LLM utilities
+<span class="k">- degree:</span> BSc (Hons) Physics
+  <span class="k">school:</span> Gargi College, University of Delhi
+  <span class="k">when:</span> 2013 – 2016</pre></div>
+      <div class="term reveal" style="--i:1"><div class="bar"><i></i><i></i><i></i><span>certifications.yaml</span></div>
+<pre><span class="k">certifications:</span>
+  - AWS Cloud Practitioner <span class="d"># 2024</span>
+  - AWS Machine Learning Practitioner <span class="d"># 2024</span>
+  - Dataiku ML Practitioner <span class="d"># 2024</span>
+  - NIIT Instructional Design
+<span class="k">community:</span>
+  - co-ambassador, Women in Data Science Paris
+  - Novartis Metamorphosis Leadership Program
+  - top 10, Novartis Financial Datathon 2023
+<span class="k">also:</span> certified yoga teacher <span class="d"># Yoga Alliance</span></pre></div>
     </div>
   </div>
 </section>
@@ -417,9 +506,15 @@ footer small{display:block;margin-top:50px;color:var(--muted);font:12px var(--mo
       <div class="bar"><i></i><i></i><i></i><span>~/namrata — zsh</span></div>
       <pre id="footTerm"></pre>
     </div>
+    <div class="contact reveal">
+      <a href="mailto:namratabhatia21@gmail.com"><span class="k">email</span>namratabhatia21@gmail.com</a>
+      <a href="https://www.linkedin.com/in/namratabhatia21/"><span class="k">linkedin</span>in/namratabhatia21</a>
+      <a href="https://github.com/namratabhatia21"><span class="k">github</span>namratabhatia21</a>
+      <div><span class="k">location</span>Paris, France</div>
+    </div>
     <div class="btns">
-      <a class="btn primary" href="https://github.com/namratabhatia21">github</a>
-      <a class="btn" data-link="linkedin" href="#" hidden>linkedin</a>
+      <a class="btn primary" href="mailto:namratabhatia21@gmail.com">✉ email me</a>
+      <a class="btn" href="https://www.linkedin.com/in/namratabhatia21/">linkedin</a>
       <a class="btn" data-link="cv" href="#" hidden>cv.pdf</a>
     </div>
     <small>// hand-built: one HTML file, inline SVG, no frameworks</small>
@@ -429,10 +524,11 @@ footer small{display:block;margin-top:50px;color:var(--muted);font:12px var(--mo
 <script>
 // ── Edit your links here ───────────────────────────────────────────────
 const LINKS = {
-  linkedin: "", // e.g. "https://www.linkedin.com/in/your-handle/"
-  cv: ""        // e.g. "assets/your-cv.pdf"
+  linkedin: "https://www.linkedin.com/in/namratabhatia21/",
+  email: "mailto:namratabhatia21@gmail.com",
+  cv: ""        // TODO(Namrata): add an up-to-date AI CV, e.g. "assets/Namrata_Bhatia_CV.pdf"
 };
-const STACK = ["python", "llm pipelines", "rag", "agents", "evaluation", "bert", "azure", "docker", "fastapi", "queues & workers", "observability", "mlops", "system design"];
+const STACK = ["python", "sql", "llms", "rag", "agents", "function calling", "bert / transformers", "pytorch", "tensorflow", "spacy", "azure ml", "aws sagemaker", "dask", "snowflake", "power bi", "evaluation", "system design"];
 
 const STAGES = [
   { comp: "ingestion", title: "Decouple ingestion from the source tool",
@@ -446,7 +542,7 @@ const STAGES = [
     why: "The load is spiky. Scaling with demand means cost follows usage, not peak capacity." },
   { comp: "classifier", title: "Small model first",
     decision: "A fine-tuned BERT classifier labels and routes every requirement before any LLM sees it.",
-    why: "This step is high-volume and well defined. A small model makes it fast, cheap, deterministic and measurable." },
+    why: "This step is high-volume and well defined. Fine-tuning BERT with hierarchical labels took accuracy from 55% to 82%, and few-shot function calling covers the rare classes." },
   { comp: "rule-agents", title: "One agent per rule",
     decision: "LLM agents run in parallel. Each one checks a single writing rule: ambiguity, testability, completeness and so on.",
     why: "The LLM is used only where judgement is needed. Separate agents can be evaluated, tuned and rolled back on their own." },
@@ -502,7 +598,7 @@ function typeTerm(pre, lines, startDelay = 0) {
 }
 typeTerm($("heroTerm"), [
   { type: "whoami" },
-  { html: '<span class="k">ai-engineer</span> <span class="d">— llm pipelines · rag · agents · mlops</span>' },
+  { html: '<span class="k">ai-engineer @ alstom</span> <span class="d">· paris · msc data science &amp; ai</span>' },
   { type: "cat principles.txt" },
   { html: '<span class="d">1.</span> simple beats clever <span class="d">(measure it)</span>\n<span class="d">2.</span> observable by default\n<span class="d">3.</span> humans stay in the loop' }
 ], 1700);
@@ -743,13 +839,17 @@ let gitPaths = [];
 function buildGit() {
   gitSvg.innerHTML = "";
   const top = $("git").getBoundingClientRect().top;
-  const ys = commits.map(c => c.getBoundingClientRect().top - top + 10);
-  const L = [24, 64];
-  const main = el("path", { d: `M${L[0]} ${ys[0]}V${ys[3]}`, stroke: "var(--c0)", pathLength: 1, "stroke-dasharray": 1 }, gitSvg);
-  const br = el("path", { d: `M${L[0]} ${ys[1] + 14}C${L[0]} ${ys[1] + 60} ${L[1]} ${ys[1] + 40} ${L[1]} ${ys[1] + 80}V${ys[2]}C${L[1]} ${ys[3] - 50} ${L[0]} ${ys[3] - 40} ${L[0]} ${ys[3] - 8}`, stroke: "var(--c3)", pathLength: 1, "stroke-dasharray": 1 }, gitSvg);
-  gitPaths = [main, br];
+  const ys = commits.map(c => c.getBoundingClientRect().top - top + 10), L = [24, 64];
+  const lanes = commits.map(c => +c.dataset.lane);
+  const b0 = lanes.indexOf(1), b1 = lanes.lastIndexOf(1), last = commits.length - 1;
+  const main = el("path", { d: `M${L[0]} ${ys[0]}V${ys[last]}`, stroke: "var(--c0)", pathLength: 1, "stroke-dasharray": 1 }, gitSvg);
+  gitPaths = [main];
+  if (b0 > 0) {
+    const from = ys[b0 - 1] + 14, to = ys[b1 + 1];
+    gitPaths.push(el("path", { d: `M${L[0]} ${from}C${L[0]} ${from + 40} ${L[1]} ${from + 20} ${L[1]} ${from + 60}V${ys[b1]}C${L[1]} ${to - 50} ${L[0]} ${to - 40} ${L[0]} ${to - 8}`, stroke: "var(--c3)", pathLength: 1, "stroke-dasharray": 1 }, gitSvg));
+  }
   commits.forEach((c, i) => {
-    const x = L[+c.dataset.lane], y = ys[i];
+    const x = L[lanes[i]], y = ys[i];
     el("path", { d: `M${x + 12} ${y}H92`, stroke: "var(--line)", "stroke-width": 1, "stroke-dasharray": "3 4" }, gitSvg);
     el("circle", { cx: x, cy: y, r: c.hasAttribute("data-merge") ? 9 : 7, fill: "var(--bg)", stroke: getComputedStyle(c).getPropertyValue("--cc").trim(), "stroke-width": 3 }, gitSvg);
   });
@@ -759,7 +859,7 @@ function drawGit() {
   if (!gitPaths.length) return;
   const g = $("git").getBoundingClientRect(), t = reduce ? 1 : clamp((innerHeight * .7 - g.top) / g.height);
   gitPaths[0].style.strokeDashoffset = 1 - t;
-  gitPaths[1].style.strokeDashoffset = 1 - clamp((t - .2) / .7);
+  if (gitPaths[1]) gitPaths[1].style.strokeDashoffset = 1 - clamp((t - .35) / .5);
 }
 
 // ── scroll ─────────────────────────────────────────────────────────────
@@ -831,11 +931,20 @@ const io = new IntersectionObserver(es => es.forEach(e => {
   e.target.classList.add("in"); io.unobserve(e.target);
   if (e.target.id === "footTermWrap") typeTerm($("footTerm"), [
     { type: "ping namrata" },
-    { html: '<span class="k">reply</span> <span class="d">from namratabhatia21.github.io:</span> open to conversations about\nAI systems, RAG &amp; agents in production, and teaching.' },
-    { type: "open github" }
+    { html: '<span class="k">reply</span> <span class="d">from paris:</span> open to conversations about AI systems,\nRAG &amp; agents in production, and teaching.' },
+    { type: "open mailto:namratabhatia21@gmail.com" }
   ], 300);
 }), { threshold: .25 });
 document.querySelectorAll(".reveal, .commit, #footTermWrap").forEach(n => io.observe(n));
+const countIO = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return; countIO.unobserve(e.target);
+  e.target.querySelectorAll("[data-count]").forEach(n => {
+    const to = +n.dataset.count, dec = +(n.dataset.dec || 0), t0 = performance.now(), dur = 1400;
+    if (reduce) return;
+    (function f(now) { const t = ease(clamp((now - t0) / dur)); n.textContent = (to * t).toFixed(dec); if (t < 1) requestAnimationFrame(f); })(t0);
+  });
+}), { threshold: .4 });
+document.querySelectorAll(".metric").forEach(n => countIO.observe(n));
 
 if (fine && !reduce) {
   const hud = $("hud"), cx = $("crossX"), cy = $("crossY"), spot = $("spot");
