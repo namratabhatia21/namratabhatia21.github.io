@@ -63,19 +63,20 @@ em{font-style:italic;color:var(--accent)}
 @keyframes grow{to{transform:scaleX(1)}}
 
 /* hero with portrait */
-.hero-grid{display:grid;grid-template-columns:1.45fr .8fr;gap:56px;align-items:center}
+.hero-grid{display:grid;grid-template-columns:1fr 280px;gap:64px;align-items:center}
+.hero-grid .portrait{max-width:280px;justify-self:end}
 .hero-grid .story{font-size:clamp(2.4rem,4.9vw,4.5rem)}
 .portrait{margin:0;position:relative;opacity:0;animation:rise 1s cubic-bezier(.2,.7,.2,1) .3s forwards;transform:translateY(20px)}
 .portrait img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;border-radius:999px 999px 18px 18px;filter:saturate(.95)}
 .portrait::before{content:"";position:absolute;inset:-14px -14px 14px 14px;border:1.5px solid var(--accent);border-radius:999px 999px 18px 18px;z-index:-1}
 .portrait figcaption{display:flex;align-items:center;gap:8px;margin-top:14px;font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .portrait .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
-.portrait.small{max-width:300px;margin:0 0 30px 14px;animation-delay:0s}
+.portrait.small{max-width:220px;margin:0 0 30px 14px;animation-delay:0s}
 .facts-col{position:sticky;top:90px}
 .facts-col .facts{position:static}
 @media (max-width:860px){
   .hero-grid{grid-template-columns:1fr;gap:28px}
-  .hero-grid .portrait{max-width:260px;margin-left:14px}
+  .hero-grid .portrait{max-width:220px;margin-left:14px;justify-self:start}
   .facts-col{position:static}
 }
 
