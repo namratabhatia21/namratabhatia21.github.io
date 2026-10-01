@@ -197,6 +197,27 @@ section{position:relative}
 .chips span{font:500 11px var(--mono);padding:3px 8px;border-radius:6px;border:1px solid var(--line);color:var(--muted)}
 @media (max-width:820px){.services{grid-template-columns:1fr}}
 
+/* ── about ── */
+.hero .role{font:500 clamp(1.05rem,2vw,1.4rem)/1.5 var(--mono);color:var(--ink);margin:0 0 18px}
+.hero .role span{color:var(--hi)}
+.about{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:start}
+.about h2{font-size:clamp(1.9rem,4.2vw,3.1rem);margin:12px 0 20px}
+.about p{color:var(--muted);font-size:1.06rem;margin:0 0 14px;max-width:38em}
+.about p b{color:var(--ink);font-weight:600}
+.facts{max-width:none;margin-top:40px}
+.facts pre{min-height:0}
+.facts a{color:var(--c6)}
+@media (max-width:860px){.about{grid-template-columns:1fr}.facts{margin-top:0}}
+/* ── project index ── */
+.pindex{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pindex a{display:grid;gap:6px;padding:20px;border:1px solid var(--line);border-left:3px solid var(--pc);border-radius:12px;background:var(--panel);text-decoration:none;box-shadow:var(--shadow);transition:transform .25s,border-color .25s}
+.pindex a:hover{transform:translateY(-4px);border-color:var(--pc)}
+.pindex .n{font:700 2rem/1 var(--head);color:var(--pc)}
+.pindex .t{font:700 1.15rem var(--head)}
+.pindex .m{font:12px var(--mono);color:var(--muted)}
+.pindex .go{font:600 12px var(--mono);color:var(--pc);margin-top:6px}
+@media (max-width:820px){.pindex{grid-template-columns:1fr}}
+
 /* ── metrics ── */
 .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .metric{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 20px 24px;overflow:hidden;box-shadow:var(--shadow)}
@@ -247,11 +268,10 @@ footer small{display:block;margin-top:50px;color:var(--muted);font:12px var(--mo
 <nav>
   <a class="brand" href="#top">namrata<b>.</b>bhatia</a>
   <ul>
-    <li><a href="#system">/system</a></li>
-    <li><a href="#tradeoffs">/decisions</a></li>
-    <li><a href="#metrics">/metrics</a></li>
-    <li><a href="#path">/log</a></li>
-    <li><a href="#work">/services</a></li>
+    <li><a href="#about">/about</a></li>
+    <li><a href="#projects">/projects</a></li>
+    <li><a href="#experience">/experience</a></li>
+    <li><a href="#skills">/skills</a></li>
     <li><a href="#contact">/contact</a></li>
   </ul>
 </nav>
@@ -265,15 +285,16 @@ footer small{display:block;margin-top:50px;color:var(--muted);font:12px var(--mo
   </svg>
   <div class="fade"></div>
   <div class="wrap copy">
-    <div class="tag">// AI ENGINEER · DATA SCIENTIST · SYSTEMS THINKER</div>
-    <h1 id="headline"><span data-scramble>I design systems,</span><br><span class="accent" data-scramble>not just models.</span></h1>
-    <p class="lead">I build production AI systems end to end: LLM pipelines, RAG, agents, evaluation and the people in the loop. Before AI, I spent seven years making enterprise systems like SAP S/4HANA usable for thousands of people. So I design for how a system is actually used, not just how it runs.</p>
+    <div class="tag">// HELLO, I'M</div>
+    <h1 id="headline"><span data-scramble>Namrata</span> <span class="accent" data-scramble>Bhatia</span></h1>
+    <p class="role">AI Engineer at Alstom · Paris<br><span>I design AI systems, not just models.</span></p>
+    <p class="lead">I build production AI systems end to end: LLM pipelines, RAG, agents, evaluation and the people in the loop.</p>
     <div class="term" aria-label="Principles">
       <div class="bar"><i></i><i></i><i></i><span>~/namrata — zsh</span></div>
       <pre id="heroTerm"></pre>
     </div>
     <div class="btns">
-      <a class="btn primary" href="#system">▶ watch the system build</a>
+      <a class="btn primary" href="#projects">▶ see my projects</a>
       <a class="btn" href="https://github.com/namratabhatia21">github</a>
       <a class="btn" data-link="linkedin" href="#" hidden>linkedin</a>
       <a class="btn" data-link="email" href="#" hidden>email</a>
@@ -285,7 +306,56 @@ footer small{display:block;margin-top:50px;color:var(--muted);font:12px var(--mo
 <div class="ticker" aria-hidden="true"><div class="track" id="ticker"></div></div>
 
 <main>
-<!-- ═══════════ SYSTEM ═══════════ -->
+<!-- ═══════════ ABOUT ═══════════ -->
+<section id="about" class="pad">
+  <div class="wrap">
+    <div class="about">
+      <div class="reveal">
+        <div class="tag">// ABOUT ME</div>
+        <h2>I make complex systems work for the people who use them.</h2>
+        <p>I'm an AI engineer at <b>Alstom</b> in Paris, building production LLM systems: classification, retrieval and agents that check the quality of engineering requirements, with evaluation and monitoring built in from the start.</p>
+        <p>I didn't start in code. For seven years I designed training and documentation for enterprise software at <b>NIIT, Accenture and Novartis</b>, including SAP S/4HANA rollouts for thousands of employees. That taught me that a system is only as good as people's trust in it.</p>
+        <p>An <b>MSc in Data Science &amp; AI</b> at emlyon business school and McGill University turned that into building systems myself. Alongside work, I co-lead Women in Data Science Paris and teach at emlyon.</p>
+      </div>
+      <div class="term facts reveal" style="--i:1"><div class="bar"><i></i><i></i><i></i><span>whoami.yaml</span></div>
+<pre><span class="k">name:</span>      Namrata Bhatia
+<span class="k">role:</span>      AI Engineer @ Alstom
+<span class="k">location:</span>  Paris, France
+<span class="k">focus:</span>     [llm pipelines, rag, agents,
+            evaluation, mlops]
+<span class="k">education:</span> MSc Data Science &amp; AI
+           emlyon × McGill · GPA 4.0
+<span class="k">community:</span> WiDS Paris co-ambassador
+<span class="k">contact:</span>   <a href="mailto:namratabhatia21@gmail.com">namratabhatia21@gmail.com</a></pre></div>
+    </div>
+    <div class="tag reveal" style="margin:64px 0 18px">// HIGHLIGHTS</div>
+<div class="metrics">
+      <div class="metric reveal" style="--i:0;--mc:var(--c3);--p:.82"><div class="k">text classification accuracy</div><div class="v"><span data-count="55">55</span>% → <span data-count="82">82</span>%</div><div class="s">fine-tuned BERT · hierarchical labels · Alstom</div><i></i></div>
+      <div class="metric reveal" style="--i:1;--mc:var(--c0);--p:.75"><div class="k">rag indexing throughput</div><div class="v"><span data-count="3">3</span>×</div><div class="s">parallel extraction &amp; indexing · Alstom</div><i></i></div>
+      <div class="metric reveal" style="--i:2;--mc:var(--c1);--p:.9"><div class="k">client records modelled</div><div class="v"><span data-count="3">3</span>M+</div><div class="s">4 segments + recommender on Dask · Prosol</div><i></i></div>
+      <div class="metric reveal" style="--i:0;--mc:var(--c2);--p:1"><div class="k">users onboarded to SAP S/4HANA</div><div class="v"><span data-count="3000">3000</span>+</div><div class="s">led a team of 15 in Sydney · Accenture</div><i></i></div>
+      <div class="metric reveal" style="--i:1;--mc:var(--c4);--p:.95"><div class="k">workshop satisfaction</div><div class="v"><span data-count="95">95</span>%</div><div class="s">10+ business-unit leaders · Data &amp; AI strategy · Fastned</div><i></i></div>
+      <div class="metric reveal" style="--i:2;--mc:var(--c6);--p:1"><div class="k">msc gpa</div><div class="v"><span data-count="4" data-dec="1">4.0</span></div><div class="s">Data Science &amp; AI · emlyon × McGill</div><i></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PROJECTS ═══════════ -->
+<section id="projects" class="pad" style="padding-bottom:40px">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="tag">// PROJECTS</div>
+      <h2>Things I've built.</h2>
+      <p>Start with the first one: it's interactive. Scroll and the architecture builds itself, one component and one design decision at a time.</p>
+    </div>
+    <div class="pindex">
+      <a class="reveal" style="--i:0;--pc:var(--c0)" href="#system"><span class="n">01</span><span class="t">Requirements quality platform</span><span class="m">Alstom · LLM agents · BERT · RAG</span><span class="go">interactive ↓</span></a>
+      <a class="reveal" style="--i:1;--pc:var(--c4)" href="#agentic"><span class="n">02</span><span class="t">Agentic</span><span class="m">open source · agents · hybrid search</span><span class="go">code ↗</span></a>
+      <a class="reveal" style="--i:2;--pc:var(--c3)" href="#rag"><span class="n">03</span><span class="t">RAG research assistant</span><span class="m">MSc · retrieval · embeddings</span><span class="go">code ↗</span></a>
+    </div>
+  </div>
+</section>
+
 <section id="system" aria-labelledby="system-h">
   <div class="grow" id="grow">
     <div class="stage" id="stage" data-hud>
@@ -305,9 +375,9 @@ footer small{display:block;margin-top:50px;color:var(--muted);font:12px var(--mo
       <div class="overlay ov-tl"><b>SYS</b> requirements-quality-platform · <span id="zoom">zoom 1.0×</span><span class="live" id="live">LIVE · simulated traffic</span></div>
       <div class="overlay ov-bl">build <b id="buildN">0/7</b><span class="bars" id="buildBars"></span></div>
       <div class="title" id="stageTitle">
-        <div class="tag">// A SYSTEM I DESIGNED</div>
-        <h2 id="system-h">Requirements in, reviewed findings out.</h2>
-        <p>An enterprise AI platform that checks engineering requirements for quality. Scroll to build it one component at a time. Each component comes with the decision record behind it.</p>
+        <div class="tag">// PROJECT 01 · ALSTOM</div>
+        <h2 id="system-h">Requirements quality platform</h2>
+        <p>An enterprise AI platform that checks engineering requirements for quality: requirements in, reviewed findings out. Keep scrolling to build it one component at a time, each with the decision behind it.</p>
       </div>
       <aside class="adr" id="adr" aria-live="polite">
         <div class="hdr"><span id="adrId">ADR-000</span><span class="st">ACCEPTED</span></div>
@@ -328,32 +398,12 @@ footer small{display:block;margin-top:50px;color:var(--muted);font:12px var(--mo
   </div>
 </section>
 
-<!-- ═══════════ DECISIONS ═══════════ -->
-<!-- ═══════════ METRICS ═══════════ -->
-<section id="metrics" class="pad" style="padding-bottom:0">
-  <div class="wrap">
-    <div class="head reveal">
-      <div class="tag">// OBSERVED METRICS</div>
-      <h2>Numbers from the work.</h2>
-      <p>Measured results from production, consulting and enterprise projects.</p>
-    </div>
-    <div class="metrics">
-      <div class="metric reveal" style="--i:0;--mc:var(--c3);--p:.82"><div class="k">text classification accuracy</div><div class="v"><span data-count="55">55</span>% → <span data-count="82">82</span>%</div><div class="s">fine-tuned BERT · hierarchical labels · Alstom</div><i></i></div>
-      <div class="metric reveal" style="--i:1;--mc:var(--c0);--p:.75"><div class="k">rag indexing throughput</div><div class="v"><span data-count="3">3</span>×</div><div class="s">parallel extraction &amp; indexing · Alstom</div><i></i></div>
-      <div class="metric reveal" style="--i:2;--mc:var(--c1);--p:.9"><div class="k">client records modelled</div><div class="v"><span data-count="3">3</span>M+</div><div class="s">4 segments + recommender on Dask · Prosol</div><i></i></div>
-      <div class="metric reveal" style="--i:0;--mc:var(--c2);--p:1"><div class="k">users onboarded to SAP S/4HANA</div><div class="v"><span data-count="3000">3000</span>+</div><div class="s">led a team of 15 in Sydney · Accenture</div><i></i></div>
-      <div class="metric reveal" style="--i:1;--mc:var(--c4);--p:.95"><div class="k">workshop satisfaction</div><div class="v"><span data-count="95">95</span>%</div><div class="s">10+ business-unit leaders · Data &amp; AI strategy · Fastned</div><i></i></div>
-      <div class="metric reveal" style="--i:2;--mc:var(--c6);--p:1"><div class="k">msc gpa</div><div class="v"><span data-count="4" data-dec="1">4.0</span></div><div class="s">Data Science &amp; AI · emlyon × McGill</div><i></i></div>
-    </div>
-  </div>
-</section>
-
 <section id="tradeoffs" class="pad">
   <div class="wrap">
     <div class="head reveal">
-      <div class="tag">// TRADE-OFFS</div>
-      <h2>Architecture is mostly saying no.</h2>
-      <p>Three diffs where the obvious option lost, and why.</p>
+      <div class="tag">// PROJECT 01 · KEY DESIGN DECISIONS</div>
+      <h2>Why it's built this way.</h2>
+      <p>Architecture is mostly saying no. Here are three choices where the obvious option lost.</p>
     </div>
     <div class="diffs">
       <article class="diff reveal" style="--i:0">
@@ -378,11 +428,45 @@ footer small{display:block;margin-top:50px;color:var(--muted);font:12px var(--mo
   </div>
 </section>
 
-<!-- ═══════════ CAREER LOG ═══════════ -->
-<section id="path" class="pad" style="padding-top:20px">
+<section id="work" class="pad" style="padding-top:20px">
   <div class="wrap">
     <div class="head reveal">
-      <div class="tag">// GIT LOG --GRAPH</div>
+      <div class="tag">// PROJECTS 02 – 03 · OPEN SOURCE</div>
+      <h2>Code you can read.</h2>
+      <p>Each repo has a README with the problem, the architecture, the trade-offs and how to run it.</p>
+    </div>
+    <div class="services">
+      <a id="agentic" class="svc reveal" style="--i:0;--sc:var(--c4)" href="https://github.com/namratabhatia21/Agentic">
+        <div class="top"><span class="run">running</span><span>svc/agentic ↗</span></div>
+        <svg viewBox="0 0 460 120" aria-hidden="true">
+          <g fill="none" stroke="var(--line)" stroke-width="1.5"><rect x="20" y="44" width="80" height="32" rx="6"/><rect x="150" y="44" width="90" height="32" rx="6"/><rect x="300" y="14" width="130" height="28" rx="6"/><rect x="300" y="50" width="130" height="28" rx="6"/><rect x="300" y="86" width="130" height="28" rx="6"/></g>
+          <g fill="none" stroke="var(--c4)" stroke-width="1.5" class="flow"><path d="M100 60H150"/><path d="M240 60H270V28H300M270 60V64H300M270 60V100H300"/></g>
+          <g font-family="JetBrains Mono, monospace" font-size="10" fill="var(--muted)"><text x="60" y="64" text-anchor="middle">chat ui</text><text x="195" y="64" text-anchor="middle">agent loop</text><text x="365" y="32" text-anchor="middle">tools · web/arxiv</text><text x="365" y="68" text-anchor="middle">pgvector · hybrid</text><text x="365" y="104" text-anchor="middle">sql · images</text></g>
+        </svg>
+        <div class="in"><h3>Agentic</h3>
+          <p>A chatbot that works from live data. It plans, calls tools in parallel and cites its sources, with every step streamed to the browser. Hybrid pgvector and keyword retrieval, Claude or open-weight models, Prometheus/Grafana, CI and a Cloud Run deploy.</p>
+          <div class="chips"><span>agents</span><span>rag</span><span>fastapi</span><span>pgvector</span><span>redis</span><span>docker</span><span>grafana</span></div></div>
+      </a>
+      <!-- TODO(Namrata): point this at the RAG research assistant repo. -->
+      <a id="rag" class="svc reveal" style="--i:1;--sc:var(--c3)" href="https://github.com/namratabhatia21?tab=repositories">
+        <div class="top"><span class="run">running</span><span>svc/rag-research ↗</span></div>
+        <svg viewBox="0 0 460 120" aria-hidden="true">
+          <g fill="none" stroke="var(--line)" stroke-width="1.5"><rect x="20" y="44" width="80" height="32" rx="6"/><rect x="140" y="44" width="80" height="32" rx="6"/><rect x="260" y="44" width="80" height="32" rx="6"/><rect x="370" y="44" width="70" height="32" rx="6"/></g>
+          <g fill="none" stroke="var(--c3)" stroke-width="1.5" class="flow"><path d="M100 60H140M220 60H260M340 60H370"/></g>
+          <g font-family="JetBrains Mono, monospace" font-size="10" fill="var(--muted)"><text x="60" y="64" text-anchor="middle">papers</text><text x="180" y="64" text-anchor="middle">embed</text><text x="300" y="64" text-anchor="middle">retrieve</text><text x="405" y="64" text-anchor="middle">answer</text></g>
+        </svg>
+        <div class="in"><h3>RAG research assistant</h3>
+          <p>Retrieval-augmented question answering over research papers: chunking, embeddings, retrieval and grounded answers with references.</p>
+          <div class="chips"><span>rag</span><span>nlp</span><span>llm</span><span>embeddings</span></div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="pad" style="padding-top:20px">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="tag">// EXPERIENCE · GIT LOG --GRAPH</div>
       <h2>From explaining systems to building them.</h2>
       <p>Seven years designing training and documentation for enterprise software showed me how systems succeed or fail with real users. An MSc in Data Science &amp; AI turned that into building the systems myself.</p>
     </div>
@@ -427,11 +511,10 @@ footer small{display:block;margin-top:50px;color:var(--muted);font:12px var(--mo
   </div>
 </section>
 
-<!-- ═══════════ CREDENTIALS ═══════════ -->
-<section id="credentials" class="pad" style="padding-top:20px">
+<section id="skills" class="pad" style="padding-top:20px">
   <div class="wrap">
     <div class="head reveal">
-      <div class="tag">// CREDENTIALS</div>
+      <div class="tag">// SKILLS &amp; CREDENTIALS</div>
       <h2>cat profile.yaml</h2>
     </div>
     <div class="yamls">
@@ -456,42 +539,6 @@ footer small{display:block;margin-top:50px;color:var(--muted);font:12px var(--mo
   - Novartis Metamorphosis Leadership Program
   - top 10, Novartis Financial Datathon 2023
 <span class="k">also:</span> certified yoga teacher <span class="d"># Yoga Alliance</span></pre></div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ SERVICES ═══════════ -->
-<section id="work" class="pad" style="padding-top:20px">
-  <div class="wrap">
-    <div class="head reveal">
-      <div class="tag">// SERVICES I RUN IN PUBLIC</div>
-      <h2>Code you can read.</h2>
-      <p>Each repo has a README with the problem, the architecture, the trade-offs and how to run it.</p>
-    </div>
-    <div class="services">
-      <a class="svc reveal" style="--i:0;--sc:var(--c4)" href="https://github.com/namratabhatia21/Agentic">
-        <div class="top"><span class="run">running</span><span>svc/agentic ↗</span></div>
-        <svg viewBox="0 0 460 120" aria-hidden="true">
-          <g fill="none" stroke="var(--line)" stroke-width="1.5"><rect x="20" y="44" width="80" height="32" rx="6"/><rect x="150" y="44" width="90" height="32" rx="6"/><rect x="300" y="14" width="130" height="28" rx="6"/><rect x="300" y="50" width="130" height="28" rx="6"/><rect x="300" y="86" width="130" height="28" rx="6"/></g>
-          <g fill="none" stroke="var(--c4)" stroke-width="1.5" class="flow"><path d="M100 60H150"/><path d="M240 60H270V28H300M270 60V64H300M270 60V100H300"/></g>
-          <g font-family="JetBrains Mono, monospace" font-size="10" fill="var(--muted)"><text x="60" y="64" text-anchor="middle">chat ui</text><text x="195" y="64" text-anchor="middle">agent loop</text><text x="365" y="32" text-anchor="middle">tools · web/arxiv</text><text x="365" y="68" text-anchor="middle">pgvector · hybrid</text><text x="365" y="104" text-anchor="middle">sql · images</text></g>
-        </svg>
-        <div class="in"><h3>Agentic</h3>
-          <p>A chatbot that works from live data. It plans, calls tools in parallel and cites its sources, with every step streamed to the browser. Hybrid pgvector and keyword retrieval, Claude or open-weight models, Prometheus/Grafana, CI and a Cloud Run deploy.</p>
-          <div class="chips"><span>agents</span><span>rag</span><span>fastapi</span><span>pgvector</span><span>redis</span><span>docker</span><span>grafana</span></div></div>
-      </a>
-      <!-- TODO(Namrata): point this at the RAG research assistant repo. -->
-      <a class="svc reveal" style="--i:1;--sc:var(--c3)" href="https://github.com/namratabhatia21?tab=repositories">
-        <div class="top"><span class="run">running</span><span>svc/rag-research ↗</span></div>
-        <svg viewBox="0 0 460 120" aria-hidden="true">
-          <g fill="none" stroke="var(--line)" stroke-width="1.5"><rect x="20" y="44" width="80" height="32" rx="6"/><rect x="140" y="44" width="80" height="32" rx="6"/><rect x="260" y="44" width="80" height="32" rx="6"/><rect x="370" y="44" width="70" height="32" rx="6"/></g>
-          <g fill="none" stroke="var(--c3)" stroke-width="1.5" class="flow"><path d="M100 60H140M220 60H260M340 60H370"/></g>
-          <g font-family="JetBrains Mono, monospace" font-size="10" fill="var(--muted)"><text x="60" y="64" text-anchor="middle">papers</text><text x="180" y="64" text-anchor="middle">embed</text><text x="300" y="64" text-anchor="middle">retrieve</text><text x="405" y="64" text-anchor="middle">answer</text></g>
-        </svg>
-        <div class="in"><h3>RAG research assistant</h3>
-          <p>Retrieval-augmented question answering over research papers: chunking, embeddings, retrieval and grounded answers with references.</p>
-          <div class="chips"><span>rag</span><span>nlp</span><span>llm</span><span>embeddings</span></div></div>
-      </a>
     </div>
   </div>
 </section>
